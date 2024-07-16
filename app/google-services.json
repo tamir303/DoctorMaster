@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "261194809667",
+    "project_id": "doctormaster-c7b1f",
+    "storage_bucket": "doctormaster-c7b1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:261194809667:android:a48ce584b49529d57baff6",
+        "android_client_info": {
+          "package_name": "com.example.doctormaster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAD8mIQ7fs4cytA-QuqJFJwabzKxT4DqnM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

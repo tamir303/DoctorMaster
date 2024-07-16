@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="welcomeTextView" type="id" />
+    <item name="doctorRecyclerView" type="id" />
+    <item name="fabNewAppointment" type="id" />
+    <item name="logoutButton" type="id" />
+</resources>
