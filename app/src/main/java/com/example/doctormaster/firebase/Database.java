@@ -8,12 +8,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doctormaster.models.Appointment;
 import com.example.doctormaster.models.Doctor;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Database {
-    private static final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static final DatabaseReference db = FirebaseDatabase.getInstance().getReference();
 
     /*
      * DOCTORS
@@ -30,85 +29,85 @@ public abstract class Database {
     // Load all Doctors from DB
     public static void loadDoctors(AppCompatActivity currentActivity, FirestoreCallback<List<Doctor>> firestoreCallback) {
         List<Doctor> doctorList = new ArrayList<>();
-        db.collection("doctors").get()
-                .addOnCompleteListener(task -> {
-           if (task.isSuccessful()) {
-               for (QueryDocumentSnapshot document : task.getResult()) {
-                   doctorList.add(document.toObject(Doctor.class));
-               }
+        db.child("doctors").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Doctor doctor = snapshot.getValue(Doctor.class);
+                    doctorList.add(doctor);
+                }
+                firestoreCallback.onCallBack(doctorList);
+            }
 
-               firestoreCallback.onCallBack(doctorList);
-           } else {
-               Toast.makeText(currentActivity,
-                       "Error getting doctors: " + task.getException().getMessage(),
-                       Toast.LENGTH_SHORT).show();
-
-               firestoreCallback.onCallBack(Collections.emptyList());
-           }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(currentActivity,
+                        "Error getting doctors: " + databaseError.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                firestoreCallback.onCallBack(Collections.emptyList());
+            }
         });
     }
 
     // Add new Doctor to DB
     public static void addDoctor(Doctor doctor, FirestoreCallback firestoreCallback) {
-        DocumentReference doctorRef = db.collection("doctors").document(doctor.getUid());
-
-        doctorRef.set(doctor)
+        db.child("doctors").child(doctor.getUid()).setValue(doctor)
                 .addOnSuccessListener(aVoid -> {
-                    Log.d("Firestore", "Doctor successfully added with ID: " + doctor.getUid());
+                    Log.d("FirebaseDatabase", "Doctor successfully added with ID: " + doctor.getUid());
+                    firestoreCallback.onCallBack(true);
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("Firestore", "Error adding doctor", e);
+                    Log.e("FirebaseDatabase", "Error adding doctor", e);
+                    firestoreCallback.onCallBack(false);
                 });
     }
 
     /*
-    * APPOINTMENTS
-    */
+     * APPOINTMENTS
+     */
 
     // Add new Appointment to DB
     public static void addAppointmentToDB(@NonNull Appointment appointment) {
-        CollectionReference appointmentRef = db.collection("appointments");
-
-        appointmentRef.add(appointment)
-                .addOnSuccessListener(aVoid-> {
-                    Log.d("Firestore", "Appointment saved successfully.");
+        db.child("appointments").push().setValue(appointment)
+                .addOnSuccessListener(aVoid -> {
+                    Log.d("FirebaseDatabase", "Appointment saved successfully.");
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("Firestore", "Failed to save appointment.", e);
+                    Log.e("FirebaseDatabase", "Failed to save appointment.", e);
                 });
     }
 
     // Load Appointment with ID
     public static void loadAppointmentByUid(String uid, FirestoreCallback<Appointment> firestoreCallback) {
-        DocumentReference appointmentRef = db.collection("appointments").document(uid);
+        db.child("appointments").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Appointment appointment = dataSnapshot.getValue(Appointment.class);
+                    firestoreCallback.onCallBack(appointment);
+                } else {
+                    Log.d("FirebaseDatabase", "No such document.");
+                    firestoreCallback.onCallBack(null);  // No appointment found
+                }
+            }
 
-        appointmentRef.get()
-                .addOnSuccessListener(documentSnapshot -> {
-                    if (documentSnapshot.exists()) {
-                        Appointment appointment = documentSnapshot.toObject(Appointment.class);
-                        firestoreCallback.onCallBack(appointment);
-                    } else {
-                        Log.d("Firestore", "No such document.");
-                        firestoreCallback.onCallBack(null);  // No appointment found
-                    }
-                })
-                .addOnFailureListener(e -> {
-                    Log.e("Firestore", "Failed to load appointment.", e);
-                    firestoreCallback.onCallBack(null);  // Failed to retrieve appointment
-                });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.e("FirebaseDatabase", "Failed to load appointment.", databaseError.toException());
+                firestoreCallback.onCallBack(null);  // Failed to retrieve appointment
+            }
+        });
     }
 
     // Update an existing appointment
     public static void updateAppointment(String uid, Map<String, Object> updates, FirestoreCallback<Boolean> firestoreCallback) {
-        DocumentReference appointmentRef = db.collection("appointments").document(uid);
-
-        appointmentRef.update(updates)
+        db.child("appointments").child(uid).updateChildren(updates)
                 .addOnSuccessListener(aVoid -> {
-                    Log.d("Firestore", "Appointment updated successfully.");
+                    Log.d("FirebaseDatabase", "Appointment updated successfully.");
                     firestoreCallback.onCallBack(true);  // Indicate success
                 })
                 .addOnFailureListener(e -> {
-                    Log.e("Firestore", "Error updating appointment.", e);
+                    Log.e("FirebaseDatabase", "Error updating appointment.", e);
                     firestoreCallback.onCallBack(false);  // Indicate failure
                 });
     }
