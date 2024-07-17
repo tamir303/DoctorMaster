@@ -6,10 +6,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doctormaster.DoctorDetailActivity;
+import com.example.doctormaster.adapter.DoctorAdapter;
 import com.example.doctormaster.firebase.FirebaseOperations;
 import com.example.doctormaster.firebase.FirestoreCallback;
 import com.example.doctormaster.models.Doctor;
 import com.example.doctormaster.utils.Constants;
+import com.example.doctormaster.utils.Utils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,5 +59,30 @@ public abstract class DoctorDB {
                     Log.e("FirebaseDatabase", "Error adding doctor", e);
                     firestoreCallback.onCallBack(false);
                 });
+    }
+
+    // Get only doctors relevant to specific field and speciality
+    public static void getDoctorsByFieldAndSpeciality(AppCompatActivity currentActivity,
+                                                      FirestoreCallback<List<Doctor>> firestoreCallback,
+                                                      String field,
+                                                      String speciality)
+    {
+        DoctorDB.loadDoctors(currentActivity, new FirestoreCallback<List<Doctor>>() {
+            @Override
+            public void onCallBack(List<Doctor> doctorList) {
+                if (doctorList.isEmpty()) {
+                  Log.e("FirebaseDatabase", "No doctors found!");
+                  firestoreCallback.onCallBack(Collections.emptyList());
+                } else {
+                    List<Doctor> filteredList = new ArrayList<>();
+                    for (Doctor doctor : doctorList) {
+                        if (doctor.getField().equals(field) && doctor.getSpecialties().contains(speciality))
+                            filteredList.add(doctor);
+                    }
+
+                    firestoreCallback.onCallBack(filteredList);
+                }
+            }
+        });
     }
 }

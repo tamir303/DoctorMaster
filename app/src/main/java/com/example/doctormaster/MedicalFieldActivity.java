@@ -62,11 +62,14 @@ public class MedicalFieldActivity extends AppCompatActivity {
             params.setMargins(8, 8, 8, 8);  // Add margins between items
             itemView.setLayoutParams(params);
 
-            itemView.setOnClickListener(v -> {
-                Intent newIntent = new Intent(MedicalFieldActivity.this, DoctorDetailActivity.class);
-                intent.putExtra("speciality", detail);
-                intent.putExtra("field", fieldName);
-                startActivity(newIntent);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent newIntent = new Intent(MedicalFieldActivity.this, DoctorDetailActivity.class);
+                    intent.putExtra("speciality", detail);
+                    intent.putExtra("field", fieldName);
+                    startActivity(newIntent);
+                }
             });
 
             fieldsGrid.addView(itemView);

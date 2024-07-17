@@ -8,7 +8,7 @@
 
     <!-- Header Section -->
     <TextView
-        android:id="@+id/welcomeTextView"
+        android:id="@+id/specialityTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/welcome_to_doctor_master"
@@ -43,18 +43,5 @@
         android:src="@drawable/ic_add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
-
-    <!-- Logout Button -->
-    <Button
-        android:id="@+id/logoutButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/logout"
-        app:layout_constraintBottom_toTopOf="@id/fabNewAppointment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/doctorRecyclerView"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintWidth_percent="0.8"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
