@@ -15,9 +15,9 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 public class FirestoreHelper {
-    private static final DatabaseReference db = FirebaseDatabase.getInstance("https://doctormaster-c7b1f-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+    private static final DatabaseReference db = FirebaseOperations.getDatabaseRef();
 
-    public static void uploadInitialDoctors(Context context) {
+        public static void uploadInitialDoctors(Context context) {
         try {
             // Read JSON file from assets
             InputStreamReader reader = new InputStreamReader(context.getResources().openRawResource(R.raw.doctors_init));

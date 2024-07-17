@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         Button loginSignupButton = findViewById(R.id.loginSignupButton);
 
         // Call the method to upload initial doctor data
-        FirestoreHelper.uploadInitialDoctors(this);
+        // FirestoreHelper.uploadInitialDoctors(this);
 
         loginSignupButton.setOnClickListener(v -> {
             navigateToNextActivity(MainActivity.this, LoginActivity.class);

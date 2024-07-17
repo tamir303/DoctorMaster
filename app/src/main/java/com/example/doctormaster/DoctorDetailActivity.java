@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctormaster.adapter.DoctorAdapter;
-import com.example.doctormaster.firebase.Database;
+import com.example.doctormaster.firebase.database.AppointmentDB;
 import com.example.doctormaster.firebase.FirestoreCallback;
+import com.example.doctormaster.firebase.database.DoctorDB;
 import com.example.doctormaster.models.Doctor;
 import com.example.doctormaster.utils.Utils;
 
 import java.util.List;
 
 public class DoctorDetailActivity extends AppCompatActivity {
-
     private RecyclerView doctorRecyclerView;
     private DoctorAdapter doctorAdapter;
     private List<Doctor> doctors;
@@ -28,7 +28,7 @@ public class DoctorDetailActivity extends AppCompatActivity {
         doctorRecyclerView = findViewById(R.id.doctorRecyclerView);
         doctorRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        Database.loadDoctors(this, new FirestoreCallback<List<Doctor>>() {
+        DoctorDB.loadDoctors(this, new FirestoreCallback<List<Doctor>>() {
             @Override
             public void onCallBack(List<Doctor> doctorList) {
                 if (doctorList.isEmpty()) {

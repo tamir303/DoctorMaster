@@ -33,6 +33,8 @@
 
         <activity android:name=".MedicalFieldActivity" />
 
+        <activity android:name=".DoctorDetailActivity" />
+
         <!-- Firebase Initialization -->
         <meta-data
             android:name="com.google.firebase.database.FirebaseDatabase.persistenceEnabled"

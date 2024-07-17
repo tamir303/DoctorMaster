@@ -1,6 +1,7 @@
 package com.example.doctormaster.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import com.example.doctormaster.models.Doctor;
 import java.util.List;
 
 public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder> {
-
     private List<Doctor> doctorList;
     private Context context;
 
@@ -34,9 +34,19 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     @Override
     public void onBindViewHolder(@NonNull DoctorViewHolder holder, int position) {
         Doctor doctor = doctorList.get(position);
-        holder.nameTextView.setText(doctor.getName());
-        holder.experienceTextView.setText(doctor.getExperience());
-        holder.locationTextView.setText(doctor.getLocation());
+
+        // Logging for debugging
+        if (doctor != null) {
+            String doctorNameView = doctor.getName();
+            String doctorExperienceView = "Experience of " + doctor.getExperience() + " Years";
+            String doctorLocationView = doctor.getLocation();
+
+            holder.nameTextView.setText(doctorNameView);
+            holder.experienceTextView.setText(doctorExperienceView);
+            holder.locationTextView.setText(doctorLocationView);
+        } else {
+            Log.e("DoctorAdapter", "Doctor at position " + position + " is null");
+        }
     }
 
     @Override

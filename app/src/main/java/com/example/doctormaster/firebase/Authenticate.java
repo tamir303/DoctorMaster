@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public abstract class Authenticate {
-    private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static final FirebaseAuth mAuth = FirebaseOperations.getAuth();
 
     // Login user with email and password
     public static void loginUser(@NonNull String email,
