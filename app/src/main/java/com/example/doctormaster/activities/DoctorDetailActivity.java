@@ -1,4 +1,4 @@
-package com.example.doctormaster;
+package com.example.doctormaster.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.doctormaster.R;
 import com.example.doctormaster.adapter.DoctorAdapter;
-import com.example.doctormaster.firebase.database.AppointmentDB;
 import com.example.doctormaster.firebase.FirestoreCallback;
 import com.example.doctormaster.firebase.database.DoctorDB;
 import com.example.doctormaster.models.Doctor;

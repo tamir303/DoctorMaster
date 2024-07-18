@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.doctormaster.AppointmentActivity;
+import com.example.doctormaster.activities.AppointmentActivity;
 import com.example.doctormaster.R;
 import com.example.doctormaster.models.Doctor;
 

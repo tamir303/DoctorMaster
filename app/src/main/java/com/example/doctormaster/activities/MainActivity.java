@@ -1,4 +1,4 @@
-package com.example.doctormaster;
+package com.example.doctormaster.activities;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import static com.example.doctormaster.utils.Utils.navigateToNextActivity;
 
-import com.example.doctormaster.firebase.FirestoreHelper;
+import com.example.doctormaster.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,9 +17,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Button loginSignupButton = findViewById(R.id.loginSignupButton);
-
-        // Call the method to upload initial doctor data
-        // FirestoreHelper.uploadInitialDoctors(this);
 
         loginSignupButton.setOnClickListener(v -> {
             navigateToNextActivity(MainActivity.this, LoginActivity.class);

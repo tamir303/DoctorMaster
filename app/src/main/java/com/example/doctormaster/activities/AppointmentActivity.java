@@ -1,4 +1,4 @@
-package com.example.doctormaster;
+package com.example.doctormaster.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doctormaster.R;
 import com.example.doctormaster.firebase.FirestoreCallback;
 import com.example.doctormaster.firebase.database.DoctorDB;
 import com.example.doctormaster.models.Doctor;

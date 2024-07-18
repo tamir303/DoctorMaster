@@ -6,13 +6,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.doctormaster.DoctorDetailActivity;
-import com.example.doctormaster.adapter.DoctorAdapter;
 import com.example.doctormaster.firebase.FirebaseOperations;
 import com.example.doctormaster.firebase.FirestoreCallback;
 import com.example.doctormaster.models.Doctor;
 import com.example.doctormaster.utils.Constants;
-import com.example.doctormaster.utils.Utils;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
