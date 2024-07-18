@@ -85,4 +85,28 @@ public abstract class DoctorDB {
             }
         });
     }
+
+    // Find doctor by UID
+    public static void findDoctorByUid(AppCompatActivity currentActivity, String uid, FirestoreCallback<Doctor> firestoreCallback) {
+        db.child(Constants.DOCTOR_DB).child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Doctor doctor = dataSnapshot.getValue(Doctor.class);
+                    firestoreCallback.onCallBack(doctor);
+                } else {
+                    Log.e("FirebaseDatabase", "Doctor with UID " + uid + " not found!");
+                    firestoreCallback.onCallBack(null);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(currentActivity,
+                        "Error getting doctor: " + databaseError.getMessage(),
+                        Toast.LENGTH_SHORT).show();
+                firestoreCallback.onCallBack(null);
+            }
+        });
+    }
 }

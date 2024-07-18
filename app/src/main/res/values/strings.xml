@@ -14,4 +14,5 @@
     <string name="click_to_add_the_appointment_to_your_calendar">Click to add the appointment to your calendar</string>
     <string name="logout">Logout</string>
     <string name="doctor_image">Doctor Image</string>
+    <string name="available_appointments">Available appointments:</string>
 </resources>

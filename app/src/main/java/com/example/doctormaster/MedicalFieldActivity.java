@@ -67,7 +67,7 @@ public class MedicalFieldActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent newIntent = new Intent(MedicalFieldActivity.this, DoctorDetailActivity.class);
                     intent.putExtra("speciality", detail);
-                    intent.putExtra("field", fieldName);
+                    intent.putExtra("field", "yes");
                     startActivity(newIntent);
                 }
             });
