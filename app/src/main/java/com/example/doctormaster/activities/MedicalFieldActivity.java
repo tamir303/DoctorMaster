@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doctormaster.R;
 import com.example.doctormaster.models.MedicalFieldDetails;
+import com.example.doctormaster.views.FieldItemView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -39,6 +40,7 @@ public class MedicalFieldActivity extends AppCompatActivity {
         if (iconResId != -1) {
             headerIcon.setImageResource(iconResId);
         }
+
         headerTitle.setText(fieldName);
 
         MedicalFieldDetails fieldDetails = loadMedicalFieldDetailsFromJson(R.raw.medical_fields_details, fieldName);
@@ -46,32 +48,7 @@ public class MedicalFieldActivity extends AppCompatActivity {
         assert fieldDetails != null;
 
         for (String detail : fieldDetails.getDetails()) {
-            TextView itemView = new TextView(this);
-            itemView.setText(detail);
-            itemView.setTextColor(Color.WHITE);  // Set the text color to white
-            itemView.setBackgroundColor(Color.parseColor("#8DB6CD"));  // Set the background color to a darker blue
-            itemView.setPadding(32, 24, 32, 24);  // Increase padding for larger size
-            itemView.setGravity(Gravity.CENTER);  // Center the text inside the square
-
-            // Define layout parameters
-            GridLayout.LayoutParams params = new GridLayout.LayoutParams();
-            params.width = 0;  // Make the width stretch across the available space
-            params.height = 100;  // Set a fixed height to make the squares larger
-            params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1);
-            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f);  // Stretch horizontally
-            params.setMargins(8, 8, 8, 8);  // Add margins between items
-            itemView.setLayoutParams(params);
-
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent newIntent = new Intent(MedicalFieldActivity.this, DoctorDetailActivity.class);
-                    intent.putExtra("speciality", detail);
-                    intent.putExtra("field", "yes");
-                    startActivity(newIntent);
-                }
-            });
-
+            FieldItemView itemView = new FieldItemView(this, detail, fieldName);
             fieldsGrid.addView(itemView);
         }
     }
