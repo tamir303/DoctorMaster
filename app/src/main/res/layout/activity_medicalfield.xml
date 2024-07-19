@@ -38,6 +38,9 @@
         android:padding="16dp">
     </GridLayout>
 
-
+    <FrameLayout
+        android:id="@id/menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
 
 </LinearLayout>

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="#F0F0F0"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <ImageView
         android:id="@+id/logoImageView"
@@ -42,18 +42,38 @@
         android:textSize="16sp"
         android:textColor="@android:color/black" />
 
-    <Button
-        android:id="@+id/loginSignupButton"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/subtitleTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:text="@string/log_in_sign_up"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:textColor="@android:color/white"
-        android:drawableEnd="@drawable/ic_arrow_forward"
-        android:paddingEnd="16dp"
-        android:drawablePadding="8dp" />
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/patientLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Patient Login"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:textColor="@android:color/white"
+            android:drawableEnd="@drawable/ic_arrow_forward"
+            android:paddingEnd="16dp"
+            android:drawablePadding="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/doctorLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Doctor Login"
+            android:backgroundTint="@android:color/holo_green_dark"
+            android:textColor="@android:color/white"
+            android:drawableEnd="@drawable/ic_arrow_forward"
+            android:paddingEnd="16dp"
+            android:drawablePadding="8dp"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

@@ -18,7 +18,7 @@
         >
 
         <!-- Activities -->
-        <activity android:name=".MainActivity"
+        <activity android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -26,12 +26,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity"
-            android:parentActivityName=".MainActivity" />
+        <activity android:name=".activities.LoginActivity"
+            android:parentActivityName=".activities.MainActivity" />
 
-        <activity android:name=".MedicalFieldDetailsActivity"/>
+        <activity android:name=".activities.MedicalFieldDetailsActivity" />
 
-        <activity android:name=".MedicalFieldActivity" />
+        <activity android:name=".activities.MedicalFieldActivity" />
+
+        <activity android:name=".activities.DoctorDetailActivity" />
+
+        <activity android:name=".activities.AppointmentActivity" />
+
+        <activity android:name=".activities.AppointmentCompleteActivity" />
+
+        <activity android:name=".activities.UserAppointmentsActivity" />
+
+        <activity android:name=".activities.EditDoctorProfileActivity" />
 
         <!-- Firebase Initialization -->
         <meta-data

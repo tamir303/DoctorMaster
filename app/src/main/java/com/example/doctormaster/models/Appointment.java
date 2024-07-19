@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 public class Appointment {
     private String uid;
-    private Doctor doctor;
+    private String doctor;
     private String date;
     private String time;
     private String location;
@@ -12,7 +12,7 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Appointment(String uid, Doctor doctor, String date, String time, String location) {
+    public Appointment(String uid, String doctor, String date, String time, String location) {
         this.uid = uid;
         this.doctor = doctor;
         this.date = date;
@@ -28,11 +28,11 @@ public class Appointment {
         this.uid = uid;
     }
 
-    public Doctor getDoctor() {
+    public String getDoctor() {
         return doctor;
     }
 
-    public void setDoctor(Doctor doctor) {
+    public void setDoctor(String doctor) {
         this.doctor = doctor;
     }
 
@@ -64,8 +64,12 @@ public class Appointment {
     @Override
     public String toString() {
         return String.format(
-                "An appointment was made for \nDr. %s,\nDate %s at %s in %s.",
-                doctor.getName(), date, time, location
+                "An appointment was made for \n %s,\nDate %s at %s in %s.",
+                doctor, date, time, location
         );
+    }
+
+    public String getUUID() {
+        return (uid+doctor+date).replaceAll("[.\\s]", "");
     }
 }

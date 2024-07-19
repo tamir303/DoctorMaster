@@ -38,4 +38,9 @@
         android:text="@string/click_to_add_the_appointment_to_your_calendar"
         android:textColor="@android:color/white" />
 
+    <FrameLayout
+        android:id="@id/menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
 </RelativeLayout>

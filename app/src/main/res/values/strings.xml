@@ -12,4 +12,18 @@
     <string name="field_placeholder">Field</string>
     <string name="doctor_s_image">Doctor\'s Image</string>
     <string name="click_to_add_the_appointment_to_your_calendar">Click to add the appointment to your calendar</string>
+    <string name="logout">Logout</string>
+    <string name="doctor_image">Doctor Image</string>
+    <string name="available_appointments">Available appointments:</string>
+    <string-array name="fields_array">
+        <item>Cardiology</item>
+        <item>Pregnancy</item>
+        <item>Gastroenterologist</item>
+        <item>Mental Health</item>
+        <item>Orthopedics</item>
+        <item>Neurosurgery</item>
+        <item>Emergency</item>
+        <item>Dentistry</item>
+        <item>Otolaryngology</item>
+    </string-array>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.doctormaster;
+package com.example.doctormaster.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.RawRes;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.doctormaster.R;
+import com.example.doctormaster.activities.fragments.MenuFragment;
 import com.example.doctormaster.models.MedicalField;
 
 import com.google.gson.reflect.TypeToken;
@@ -55,6 +57,11 @@ public class MedicalFieldDetailsActivity extends AppCompatActivity {
 
             fieldsGrid.addView(itemView);
         }
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.menu_container, new MenuFragment(MedicalFieldDetailsActivity.this, LoginActivity.class))
+                .commit();
     }
 
     private List<MedicalField> loadMedicalFieldsFromJson(@RawRes int resourceId) {

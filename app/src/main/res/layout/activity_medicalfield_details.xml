@@ -23,4 +23,11 @@
         android:padding="16dp"
         android:rowOrderPreserved="false">
     </GridLayout>
+
+    <FrameLayout
+        android:id="@+id/menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="0dp"
+        android:background="@android:color/darker_gray" />
 </LinearLayout>

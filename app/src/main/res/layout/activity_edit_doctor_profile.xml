@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#F0F0F0">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/etLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Location"
+        android:inputType="text" />
+
+    <Spinner
+        android:id="@+id/spinnerField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dropdown"
+        android:entries="@array/fields_array"/>
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:gravity="top"
+        android:padding="8dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewSpecialties"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp"
+        android:background="@android:color/white"/>
+
+    <EditText
+        android:id="@+id/etExperience"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Experience (years)"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etRating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Rating (out of 5)"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/etStartHour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Start Hour (24-hour format)"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etFinishHour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Finish Hour (24-hour format)"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etBreakHour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Break Hour (24-hour format)"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/etBreakLength"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Break Length (hours)"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save"
+        android:backgroundTint="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="24dp" />
+
+</LinearLayout>
