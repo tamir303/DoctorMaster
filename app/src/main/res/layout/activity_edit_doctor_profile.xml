@@ -1,100 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="16dp"
     android:background="#F0F0F0">
 
-    <EditText
-        android:id="@+id/etName"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
-        android:inputType="text" />
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etLocation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Location"
-        android:inputType="text" />
+        <!-- Name Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textSize="16sp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
 
-    <Spinner
-        android:id="@+id/spinnerField"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:spinnerMode="dropdown"
-        android:entries="@array/fields_array"/>
+        <!-- Location Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text" />
 
-    <EditText
-        android:id="@+id/etDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Description"
-        android:inputType="textMultiLine"
-        android:minLines="3"
-        android:gravity="top"
-        android:padding="8dp" />
+        <!-- Field Label and Spinner -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Field"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <Spinner
+            android:id="@+id/spinnerField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dropdown"
+            android:entries="@array/fields_array"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewSpecialties"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:padding="8dp"
-        android:background="@android:color/white"/>
+        <!-- Description Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:minLines="3"
+            android:gravity="top"
+            android:padding="8dp" />
 
-    <EditText
-        android:id="@+id/etExperience"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Experience (years)"
-        android:inputType="number" />
+        <!-- Specialties RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewSpecialties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            android:background="@android:color/white"/>
 
-    <EditText
-        android:id="@+id/etRating"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Rating (out of 5)"
-        android:inputType="numberDecimal" />
+        <!-- Experience Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Experience (years)"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etExperience"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
 
-    <EditText
-        android:id="@+id/etStartHour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Start Hour (24-hour format)"
-        android:inputType="number" />
+        <!-- Rating Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rating (out of 5)"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal" />
 
-    <EditText
-        android:id="@+id/etFinishHour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Finish Hour (24-hour format)"
-        android:inputType="number" />
+        <!-- Start Hour Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Start Hour (24-hour format)"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etStartHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
 
-    <EditText
-        android:id="@+id/etBreakHour"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Break Hour (24-hour format)"
-        android:inputType="number" />
+        <!-- Finish Hour Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Finish Hour (24-hour format)"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etFinishHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
 
-    <EditText
-        android:id="@+id/etBreakLength"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Break Length (hours)"
-        android:inputType="number" />
+        <!-- Break Hour Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Break Hour (24-hour format)"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etBreakHour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
 
-    <Button
-        android:id="@+id/btnSave"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save"
-        android:backgroundTint="@android:color/holo_blue_dark"
-        android:textColor="@android:color/white"
-        android:layout_marginTop="24dp" />
+        <!-- Break Length Label and EditText -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Break Length (hours)"
+            android:textSize="16sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="4dp"/>
+        <EditText
+            android:id="@+id/etBreakLength"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
 
-</LinearLayout>
+        <!-- Save Button -->
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:backgroundTint="@android:color/holo_blue_dark"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+
+</ScrollView>

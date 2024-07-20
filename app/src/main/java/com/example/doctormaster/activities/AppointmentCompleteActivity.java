@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.doctormaster.R;
 import com.example.doctormaster.activities.fragments.MenuFragment;
 import com.example.doctormaster.firebase.FirebaseOperations;
-import com.example.doctormaster.logic.AppointmentCheckCallback;
-import com.example.doctormaster.logic.AppointmentService;
-import com.example.doctormaster.logic.AppointmentServiceImpl;
+import com.example.doctormaster.logic.appointment.AppointmentCheckCallback;
+import com.example.doctormaster.logic.appointment.AppointmentService;
+import com.example.doctormaster.logic.appointment.AppointmentServiceImpl;
 import com.example.doctormaster.models.Appointment;
 import com.example.doctormaster.utils.Date;
 

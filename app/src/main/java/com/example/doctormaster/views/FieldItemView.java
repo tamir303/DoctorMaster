@@ -3,14 +3,17 @@ package com.example.doctormaster.views;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.GridLayout;
-
+import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
+import com.example.doctormaster.R;
 import com.example.doctormaster.activities.DoctorDetailActivity;
 
-public class FieldItemView extends androidx.appcompat.widget.AppCompatTextView {
+public class FieldItemView extends AppCompatTextView {
 
     public FieldItemView(Context context, String detail, String field) {
         super(context);
@@ -29,10 +32,16 @@ public class FieldItemView extends androidx.appcompat.widget.AppCompatTextView {
 
     private void init(Context context, String detail, String field) {
         this.setText(detail);
+        this.setTypeface(null, Typeface.BOLD);
+        this.setTextSize(24);
         this.setTextColor(Color.WHITE);  // Set the text color to white
-        this.setBackgroundColor(Color.parseColor("#8DB6CD"));  // Set the background color to a darker blue
+        this.setBackgroundColor(Color.parseColor("#308C9B"));  // Set the background color to a darker blue
         this.setPadding(32, 24, 32, 24);  // Increase padding for larger size
-        this.setGravity(Gravity.CENTER);  // Center the text inside the square
+        this.setGravity(Gravity.CENTER_VERTICAL | Gravity.START);  // Center the text vertically and align start
+
+        // Add right arrow drawable
+        this.setCompoundDrawablesWithIntrinsicBounds(null, null, ContextCompat.getDrawable(context, R.drawable.ic_right_arrow), null);
+        this.setCompoundDrawablePadding(16);  // Add padding between text and drawable
 
         // Define layout parameters
         GridLayout.LayoutParams params = new GridLayout.LayoutParams();

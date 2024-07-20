@@ -75,7 +75,7 @@ public class EditDoctorProfileActivity extends AppCompatActivity {
                     etRating.setText(result.getRating().toString());
                     etStartHour.setText(result.getStartHour().toString());
                     etFinishHour.setText(result.getFinishHour().toString());
-                    etBreakHour.setText(result.getFinishHour().toString());
+                    etBreakHour.setText(result.getBreakHour().toString());
                     etBreakLength.setText(result.getBreakLength().toString());
                 }
             }
@@ -107,6 +107,7 @@ public class EditDoctorProfileActivity extends AppCompatActivity {
                     uid, // UID can be set from elsewhere
                     etName.getText().toString(),
                     etLocation.getText().toString(),
+                    null,
                     etField.getText().toString(),
                     etDescription.getText().toString(),
                     parseSpecialties(etSpecialties.getText().toString()),

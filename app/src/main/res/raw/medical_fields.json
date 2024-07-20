@@ -1,11 +1,11 @@
 [
-  {"name": "Cardiology", "icon": "cardiology_icon"},
-  {"name": "Pregnancy", "icon": "pregnancy_icon"},
-  {"name": "Gastroenterologist", "icon": "gastroenterologist_icon"},
-  {"name": "Mental Health", "icon": "mental_health_icon"},
-  {"name": "Orthopedics", "icon": "orthopedics_icon"},
-  {"name": "Neurosurgery", "icon": "neurosurgery_icon"},
-  {"name": "Emergency", "icon": "emergency_icon"},
-  {"name": "Dentistry", "icon": "dentistry_icon"},
-  {"name": "Otolaryngology", "icon": "otolaryngology_icon"}
+  {"name": "Cardiology", "icon": "ic_cardiology_icon"},
+  {"name": "Pregnancy", "icon": "ic_pregnancy_icon"},
+  {"name": "Gastroenterologist", "icon": "ic_gastroenterologist_icon"},
+  {"name": "Mental Health", "icon": "ic_mental_health_icon"},
+  {"name": "Orthopedics", "icon": "ic_orthopedics_icon"},
+  {"name": "Neurosurgery", "icon": "ic_neurosurgery_icon"},
+  {"name": "Emergency", "icon": "ic_emergency_icon"},
+  {"name": "Dentistry", "icon": "ic_dentistry_icon"},
+  {"name": "Otolaryngology", "icon": "ic_otolaryngology_icon"}
 ]

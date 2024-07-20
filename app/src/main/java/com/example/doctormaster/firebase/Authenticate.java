@@ -7,7 +7,6 @@ import static com.example.doctormaster.utils.Utils.getErrorMessage;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -15,43 +14,45 @@ public abstract class Authenticate {
     private static final FirebaseAuth mAuth = FirebaseOperations.getAuth();
 
     // Login user with email and password
-    public static void loginUser(@NonNull String email,
-                                 @NonNull String password,
-                                 @NonNull AppCompatActivity currentActivity,
-                                 @NonNull Class<? extends AppCompatActivity> nextActivityClass) {
+    public static void loginUser(@NonNull AuthRequest authRequest) {
 
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(currentActivity, "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
+        if (authRequest.email.isEmpty() || authRequest.password.isEmpty()) {
+            Toast.makeText(authRequest.currentActivity, "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        mAuth.signInWithEmailAndPassword(email, password)
+        mAuth.signInWithEmailAndPassword(authRequest.email, authRequest.password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        navigateToNextActivity(currentActivity, nextActivityClass);
+                        if (authRequest.rememberMe)
+                            authRequest.securePreferences.saveCredentials(authRequest.email, authRequest.password);
+                        else
+                            authRequest.securePreferences.clearCredentials();
+                        navigateToNextActivity(authRequest.currentActivity, authRequest.nextActivity);
                     } else {
-                        showToast(currentActivity, "Login Failed: " + getErrorMessage(task));
+                        showToast(authRequest.currentActivity, "Login Failed: " + getErrorMessage(task));
                     }
                 });
     }
 
     // Register user with email and password
-    public static void registerUser(@NonNull String email,
-                                    @NonNull String password,
-                                    @NonNull AppCompatActivity currentActivity,
-                                    @NonNull Class<? extends AppCompatActivity> nextActivityClass) {
+    public static void registerUser(@NonNull AuthRequest authRequest) {
 
-        if (email.isEmpty() || password.isEmpty()) {
-            Toast.makeText(currentActivity, "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
+        if (authRequest.email.isEmpty() || authRequest.password.isEmpty()) {
+            Toast.makeText(authRequest.currentActivity, "Email and password cannot be empty", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        mAuth.createUserWithEmailAndPassword(email, password)
+        mAuth.createUserWithEmailAndPassword(authRequest.email, authRequest.password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        navigateToNextActivity(currentActivity, nextActivityClass);
+                        if (authRequest.rememberMe)
+                            authRequest.securePreferences.saveCredentials(authRequest.email, authRequest.password);
+                        else
+                            authRequest.securePreferences.clearCredentials();
+                        navigateToNextActivity(authRequest.currentActivity, authRequest.nextActivity);
                     } else {
-                        showToast(currentActivity, "Registration Failed: " + getErrorMessage(task));
+                        showToast(authRequest.currentActivity, "Registration Failed: " + getErrorMessage(task));
                     }
                 });
     }

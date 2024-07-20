@@ -6,8 +6,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import static com.example.doctormaster.utils.Utils.navigateToNextActivity;
-
 import com.example.doctormaster.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
         Button loginDoctor = findViewById(R.id.doctorLoginButton);
 
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+
+        // FirestoreHelper.uploadInitialDoctors(this);
 
         loginPatient.setOnClickListener(v -> {
             intent.putExtra("USER_TYPE", "patient");

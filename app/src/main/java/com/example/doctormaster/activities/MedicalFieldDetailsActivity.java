@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.RawRes;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doctormaster.R;
 import com.example.doctormaster.activities.fragments.MenuFragment;
@@ -21,14 +20,34 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class MedicalFieldDetailsActivity extends AppCompatActivity {
+public class MedicalFieldDetailsActivity extends BaseActivity {
+    GridLayout fieldsGrid;
 
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        setContentView(R.layout.activity_medicalfield_details);
+        getLayoutInflater().inflate(R.layout.activity_medicalfield_details, findViewById(R.id.container));
 
-        GridLayout fieldsGrid = findViewById(R.id.gridLayout);
+        InitializeViews();
+        setDetailsView();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.menu_container, new MenuFragment(MedicalFieldDetailsActivity.this, LoginActivity.class))
+                .commit();
+    }
+
+    @Override
+    public void InitializeViews() {
+        fieldsGrid = findViewById(R.id.gridLayout);
+    }
+
+    @Override
+    public void setButtonListeners() {
+
+    }
+
+    private void setDetailsView() {
         List<MedicalField> medicalFields = loadMedicalFieldsFromJson(R.raw.medical_fields);
 
         LayoutInflater inflater = LayoutInflater.from(this);
@@ -57,11 +76,6 @@ public class MedicalFieldDetailsActivity extends AppCompatActivity {
 
             fieldsGrid.addView(itemView);
         }
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.menu_container, new MenuFragment(MedicalFieldDetailsActivity.this, LoginActivity.class))
-                .commit();
     }
 
     private List<MedicalField> loadMedicalFieldsFromJson(@RawRes int resourceId) {

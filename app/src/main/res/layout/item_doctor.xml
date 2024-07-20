@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="#1E5989">
 
         <ImageView
             android:id="@+id/doctorImageView"
@@ -42,7 +43,7 @@
                 android:text="Doctor John Smith"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:layout_marginBottom="4dp" />
 
             <LinearLayout
@@ -63,7 +64,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Tel Aviv"
-                    android:textColor="@android:color/black" />
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white" />
             </LinearLayout>
 
             <TextView
@@ -71,8 +73,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Experience: 12 years."
-                android:textColor="@android:color/black"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="4dp"
+                android:textStyle="bold"
                 android:layout_marginBottom="8dp" />
 
             <Button
@@ -80,7 +83,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Book appointment"
-                android:backgroundTint="@android:color/holo_green_light"
+                android:backgroundTint="#83E687"
+                android:textStyle="bold"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>

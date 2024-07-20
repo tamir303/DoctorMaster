@@ -8,23 +8,43 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.doctormaster.R;
-import com.example.doctormaster.activities.fragments.MenuFragment;
+import com.example.doctormaster.firebase.AuthRequest;
 import com.example.doctormaster.firebase.Authenticate;
+import com.example.doctormaster.firebase.database.SecurePreferences;
+import com.example.doctormaster.logic.user.UserService;
+import com.example.doctormaster.logic.user.UserServiceImpl;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends BaseActivity {
     private EditText emailEditText, passwordEditText, doctorUidEditText;
     private CheckBox rememberMeCheckBox;
     private TextView forgotPasswordTextView;
     private Button loginButton, registerButton;
+    private UserService userService;
+    private String userType;
 
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        setContentView(R.layout.activity_login);
+        getLayoutInflater().inflate(R.layout.activity_login, findViewById(R.id.container));
 
+        userType = getIntent().getStringExtra("USER_TYPE"); // "patient" or "doctor"
+        userService = new UserServiceImpl(this);
+        SecurePreferences securePreferences = userService.getSecurePreference();
+
+        InitializeViews();
+        setButtonListeners();
+        processUserTypeViewStatus();
+
+        if (!securePreferences.getEmail().isEmpty() && !securePreferences.getPassword().isEmpty()) {
+            emailEditText.setText(securePreferences.getEmail());
+            passwordEditText.setText(securePreferences.getPassword());
+            rememberMeCheckBox.setChecked(true);
+        }
+    }
+
+    @Override
+    public void InitializeViews() {
         // Initialize views
         emailEditText = findViewById(R.id.emailEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
@@ -33,9 +53,51 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordTextView = findViewById(R.id.forgotPasswordTextView);
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
+    }
 
-        String userType = getIntent().getStringExtra("USER_TYPE"); // "patient" or "doctor"
+    @Override
+    public void setButtonListeners() {
+        if (userType.equals("patient")) {
+            loginButton.setOnClickListener(view -> {
+                String email = emailEditText.getText().toString().trim();
+                String password = passwordEditText.getText().toString().trim();
 
+                AuthRequest authRequest = new AuthRequest(
+                        email,
+                        password,
+                        LoginActivity.this,
+                        MedicalFieldDetailsActivity.class,
+                        userService.getSecurePreference(),
+                        rememberMeCheckBox.isChecked());
+
+                Authenticate.loginUser(authRequest);
+            });
+
+            registerButton.setOnClickListener(view -> {
+                String email = emailEditText.getText().toString().trim();
+                String password = passwordEditText.getText().toString().trim();
+
+                AuthRequest authRequest = new AuthRequest(
+                        email,
+                        password,
+                        LoginActivity.this,
+                        MedicalFieldDetailsActivity.class,
+                        userService.getSecurePreference(),
+                        rememberMeCheckBox.isChecked());
+
+                Authenticate.registerUser(authRequest);
+            });
+        } else {
+            loginButton.setOnClickListener(view -> {
+                String uid = doctorUidEditText.getText().toString().trim();
+                Intent intent = new Intent(LoginActivity.this, EditDoctorProfileActivity.class);
+                intent.putExtra("uid", uid);
+                startActivity(intent);
+            });
+        }
+    }
+
+    private void processUserTypeViewStatus() {
         if (userType.equals("patient")) {
             emailEditText.setVisibility(View.VISIBLE);
             passwordEditText.setVisibility(View.VISIBLE);
@@ -43,16 +105,8 @@ public class LoginActivity extends AppCompatActivity {
             forgotPasswordTextView.setVisibility(View.VISIBLE);
             doctorUidEditText.setVisibility(View.GONE);
 
-            loginButton.setOnClickListener(view -> {
-                String email = emailEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
-                Authenticate.loginUser(email, password, LoginActivity.this, MedicalFieldDetailsActivity.class);
-            });
-
-            registerButton.setOnClickListener(view -> {
-                String email = emailEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
-                Authenticate.registerUser(email, password, LoginActivity.this, MedicalFieldDetailsActivity.class);
+            forgotPasswordTextView.setOnClickListener(view -> {
+                userService.resetUserPassword();
             });
         } else {
             emailEditText.setVisibility(View.GONE);
@@ -61,13 +115,6 @@ public class LoginActivity extends AppCompatActivity {
             forgotPasswordTextView.setVisibility(View.GONE);
             registerButton.setVisibility(View.GONE);
             doctorUidEditText.setVisibility(View.VISIBLE);
-
-            loginButton.setOnClickListener(view -> {
-                String uid = doctorUidEditText.getText().toString().trim();
-                Intent intent = new Intent(LoginActivity.this, EditDoctorProfileActivity.class);
-                intent.putExtra("uid", uid);
-                startActivity(intent);
-            });
         }
     }
 }

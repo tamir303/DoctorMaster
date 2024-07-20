@@ -6,6 +6,7 @@ public class Doctor {
     private String uid;
     private String name;
     private String location;
+    private String image;
     private String field;
     private String description;
     private List<String> specialties;
@@ -19,10 +20,11 @@ public class Doctor {
     public Doctor() {
     }
 
-    public Doctor(String uid, String name, String location, String field, String description, List<String> specialties, Integer experience, Integer rating, Integer startHour, Integer finishHour, Integer breakHour, Integer breakLength) {
+    public Doctor(String uid, String name, String location, String image, String field, String description, List<String> specialties, Integer experience, Integer rating, Integer startHour, Integer finishHour, Integer breakHour, Integer breakLength) {
         this.uid = uid;
         this.name = name;
         this.location = location;
+        this.image = image;
         this.field = field;
         this.description = description;
         this.specialties = specialties;
@@ -32,6 +34,14 @@ public class Doctor {
         this.finishHour = finishHour;
         this.breakHour = breakHour;
         this.breakLength = breakLength;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getUid() {

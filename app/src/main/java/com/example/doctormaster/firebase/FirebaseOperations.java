@@ -22,7 +22,7 @@ public class FirebaseOperations {
     }
 
     public static String getUserEmail() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        FirebaseUser user = getAuth().getCurrentUser();
         if (user != null) {
             Log.d("FirebaseOperations", "Fetched user email: " + user.getEmail());
             return user.getEmail();

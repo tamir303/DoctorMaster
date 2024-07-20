@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">DoctorMaster</string>
     <string name="logo_description">Doctor Master</string>
-    <string name="slogan_txt">Making doctor appointments has never been so easy</string>
+    <string name="slogan_txt">Making doctor appointments\n\t has never been so easy</string>
     <string name="log_in_sign_up">Log in/Sign up</string>
     <string name="welcome_to_doctor_master">Welcome to Doctor Master</string>
     <string name="medical_field_icon" />
@@ -15,6 +15,7 @@
     <string name="logout">Logout</string>
     <string name="doctor_image">Doctor Image</string>
     <string name="available_appointments">Available appointments:</string>
+    <string name="header_image">header image</string>
     <string-array name="fields_array">
         <item>Cardiology</item>
         <item>Pregnancy</item>

@@ -1,20 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
     android:padding="16dp">
-
-    <ImageView
-        android:id="@+id/logoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:src="@drawable/logo"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/userIconImageView"
@@ -22,9 +13,9 @@
         android:layout_height="64dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/ic_user"
-        app:layout_constraintTop_toBottomOf="@id/logoImageView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/doctorUidEditText"
@@ -34,7 +25,7 @@
         android:hint="Doctor UID"
         android:padding="12dp"
         android:layout_marginBottom="16dp"
-        android:background="@android:drawable/editbox_background_normal"
+        android:background="#33588E"
         app:layout_constraintTop_toBottomOf="@id/userIconImageView"
         app:layout_constraintBottom_toTopOf="@id/loginButton"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,8 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:hint="Email"
+        android:text="tamir303@gmail.com"
         android:padding="12dp"
-        android:background="@android:drawable/editbox_background_normal"
+        android:background="#33588E"
         app:layout_constraintTop_toBottomOf="@id/userIconImageView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -58,8 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Password"
+        android:text="12683579Ab!"
         android:padding="12dp"
-        android:background="@android:drawable/editbox_background_normal"
+        android:background="#33588E"
         android:inputType="textPassword"
         app:layout_constraintTop_toBottomOf="@id/emailEditText"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,8 +62,8 @@
         android:id="@+id/rememberMeCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
         android:text="Remember me"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@id/passwordEditText"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -78,9 +71,9 @@
         android:id="@+id/forgotPasswordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:text="Forgot Password?"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/passwordEditText"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -90,7 +83,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="LOGIN"
-        android:backgroundTint="@android:color/holo_blue_dark"
+        android:backgroundTint="#308C9B"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/rememberMeCheckBox"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="REGISTER"
-        android:backgroundTint="@android:color/holo_green_dark"
+        android:backgroundTint="#308C9B"
         android:textColor="@android:color/white"
         app:layout_constraintTop_toBottomOf="@id/loginButton"
         app:layout_constraintStart_toStartOf="parent"

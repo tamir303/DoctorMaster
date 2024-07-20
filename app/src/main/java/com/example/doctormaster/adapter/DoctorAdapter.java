@@ -1,5 +1,6 @@
 package com.example.doctormaster.adapter;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,6 +49,10 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
             holder.nameTextView.setText(doctorNameView);
             holder.experienceTextView.setText(doctorExperienceView);
             holder.locationTextView.setText(doctorLocationView);
+
+            int iconResId = context.getResources().getIdentifier(doctor.getImage(), "drawable", context.getPackageName());
+            holder.doctorImageView.setImageResource(iconResId);
+
             holder.bookAppointmentButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -68,6 +74,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     static class DoctorViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView, experienceTextView, locationTextView;
         Button bookAppointmentButton;
+        ImageView doctorImageView;
 
         DoctorViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -75,6 +82,7 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
             experienceTextView = itemView.findViewById(R.id.doctorExperienceTextView);
             locationTextView = itemView.findViewById(R.id.doctorLocationTextView);
             bookAppointmentButton = itemView.findViewById(R.id.bookAppointmentButton);
+            doctorImageView = itemView.findViewById(R.id.doctorImageView);
         }
     }
 }
