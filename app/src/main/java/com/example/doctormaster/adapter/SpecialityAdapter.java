@@ -36,7 +36,7 @@ public class SpecialityAdapter extends RecyclerView.Adapter<SpecialityAdapter.Sp
     }
 
     public static class SpecialityViewHolder extends RecyclerView.ViewHolder {
-        TextView specialityName;
+        final TextView specialityName;
 
         public SpecialityViewHolder(@NonNull View itemView) {
             super(itemView);

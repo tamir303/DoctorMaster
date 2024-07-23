@@ -20,14 +20,13 @@ public class UserAppointmentsActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageView imgPlaceholder;
-    private TextView tvGreeting;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_appointments);
 
-        tvGreeting = findViewById(R.id.tvGreeting);
+        TextView tvGreeting = findViewById(R.id.tvGreeting);
         imgPlaceholder = findViewById(R.id.imgPlaceholder);
 
         if (savedInstanceState == null) {
@@ -44,14 +43,9 @@ public class UserAppointmentsActivity extends AppCompatActivity {
 
         // Set user email in greeting
         String userEmail = FirebaseOperations.getUserEmail();
-        this.tvGreeting.setText("Hello, " + userEmail);
+        tvGreeting.setText("Hello, " + userEmail);
 
-        imgPlaceholder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openImageChooser();
-            }
-        });
+        imgPlaceholder.setOnClickListener(v -> openImageChooser());
 
         // TODO IMPLEMENT IMAGE UPLOAD
     }

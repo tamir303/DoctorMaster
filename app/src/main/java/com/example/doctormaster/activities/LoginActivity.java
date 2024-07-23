@@ -105,9 +105,7 @@ public class LoginActivity extends BaseActivity {
             forgotPasswordTextView.setVisibility(View.VISIBLE);
             doctorUidEditText.setVisibility(View.GONE);
 
-            forgotPasswordTextView.setOnClickListener(view -> {
-                userService.resetUserPassword();
-            });
+            forgotPasswordTextView.setOnClickListener(view -> userService.resetUserPassword());
         } else {
             emailEditText.setVisibility(View.GONE);
             passwordEditText.setVisibility(View.GONE);

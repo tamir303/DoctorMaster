@@ -21,8 +21,8 @@ import com.example.doctormaster.models.Doctor;
 import java.util.List;
 
 public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder> {
-    private List<Doctor> doctorList;
-    private Context context;
+    private final List<Doctor> doctorList;
+    private final Context context;
 
     public DoctorAdapter(List<Doctor> doctorList, Context context) {
         this.doctorList = doctorList;
@@ -53,13 +53,10 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
             int iconResId = context.getResources().getIdentifier(doctor.getImage(), "drawable", context.getPackageName());
             holder.doctorImageView.setImageResource(iconResId);
 
-            holder.bookAppointmentButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(context, AppointmentActivity.class);
-                    intent.putExtra("doctor_uid", doctor.getUid());
-                    context.startActivity(intent);
-                }
+            holder.bookAppointmentButton.setOnClickListener(v -> {
+                Intent intent = new Intent(context, AppointmentActivity.class);
+                intent.putExtra("doctor_uid", doctor.getUid());
+                context.startActivity(intent);
             });
         } else {
             Log.e("DoctorAdapter", "Doctor at position " + position + " is null");
@@ -72,9 +69,11 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
     }
 
     static class DoctorViewHolder extends RecyclerView.ViewHolder {
-        TextView nameTextView, experienceTextView, locationTextView;
-        Button bookAppointmentButton;
-        ImageView doctorImageView;
+        final TextView nameTextView;
+        final TextView experienceTextView;
+        final TextView locationTextView;
+        final Button bookAppointmentButton;
+        final ImageView doctorImageView;
 
         DoctorViewHolder(@NonNull View itemView) {
             super(itemView);

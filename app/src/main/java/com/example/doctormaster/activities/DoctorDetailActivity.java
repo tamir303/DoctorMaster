@@ -37,15 +37,12 @@ public class DoctorDetailActivity extends BaseActivity {
 
         DoctorDB.getDoctorsByFieldAndSpeciality(
                 this,
-                new FirestoreCallback<List<Doctor>>() {
-                    @Override
-                    public void onCallBack(List<Doctor> doctorList) {
-                        if (doctorList.isEmpty()) {
-                            Utils.showToast(DoctorDetailActivity.this, "No doctors found!");
-                        } else {
-                            doctorAdapter = new DoctorAdapter(doctorList, DoctorDetailActivity.this);
-                            doctorRecyclerView.setAdapter(doctorAdapter);
-                        }
+                doctorList -> {
+                    if (doctorList.isEmpty()) {
+                        Utils.showToast(DoctorDetailActivity.this, "No doctors found!");
+                    } else {
+                        doctorAdapter = new DoctorAdapter(doctorList, DoctorDetailActivity.this);
+                        doctorRecyclerView.setAdapter(doctorAdapter);
                     }
                 },
                 field,

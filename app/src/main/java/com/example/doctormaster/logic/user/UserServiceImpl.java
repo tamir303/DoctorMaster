@@ -32,28 +32,25 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void resetUserPassword() {
-        showResetPasswordDialog(new UserCheckCallback() {
-            @Override
-            public void onResult(boolean actionResult, UserActionRequest userActionRequest) {
-                if (actionResult) {
-                    Log.d("UserService", userActionRequest.toString());
+        showResetPasswordDialog((actionResult, userActionRequest) -> {
+            if (actionResult) {
+                Log.d("UserService", userActionRequest.toString());
 
-                    FirebaseOperations.getAuth()
-                            .signInWithEmailAndPassword(userActionRequest.getEmail(), userActionRequest.getOldPassword())
-                            .addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    FirebaseUser user = getAuth().getCurrentUser();
-                                    if (user != null) {
-                                        user.updatePassword(userActionRequest.getNewPassword());
-                                        Log.d("UserService", "New password as been set!");
-                                        Utils.showToast((AppCompatActivity) context, "Password reset successful!");
-                                        Utils.navigateToNextActivity((AppCompatActivity) context, MedicalFieldDetailsActivity.class);
-                                    } else
-                                        Log.e("UserService", "User isn't authenticated!");
+                FirebaseOperations.getAuth()
+                        .signInWithEmailAndPassword(userActionRequest.getEmail(), userActionRequest.getOldPassword())
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                FirebaseUser user = getAuth().getCurrentUser();
+                                if (user != null) {
+                                    user.updatePassword(userActionRequest.getNewPassword());
+                                    Log.d("UserService", "New password as been set!");
+                                    Utils.showToast((AppCompatActivity) context, "Password reset successful!");
+                                    Utils.navigateToNextActivity((AppCompatActivity) context, MedicalFieldDetailsActivity.class);
                                 } else
-                                    Log.e("UserService", Objects.requireNonNull(task.getException().getLocalizedMessage()));
-                            });
-                }
+                                    Log.e("UserService", "User isn't authenticated!");
+                            } else
+                                Log.e("UserService", Objects.requireNonNull(task.getException().getLocalizedMessage()));
+                        });
             }
         });
     }
@@ -97,29 +94,23 @@ public class UserServiceImpl implements UserService {
         builder.setView(layout);
 
         // Set the positive button and its action
-        builder.setPositiveButton("Reset", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String email = emailInput.getText().toString();
-                String oldPassword = oldPasswordInput.getText().toString();
-                String newPassword = newPasswordInput.getText().toString();
+        builder.setPositiveButton("Reset", (dialog, which) -> {
+            String email = emailInput.getText().toString();
+            String oldPassword = oldPasswordInput.getText().toString();
+            String newPassword = newPasswordInput.getText().toString();
 
-                // Handle the password reset logic here
-                Toast.makeText(context.getApplicationContext(), "Password reset for email: " + email, Toast.LENGTH_SHORT).show();
+            // Handle the password reset logic here
+            Toast.makeText(context.getApplicationContext(), "Password reset for email: " + email, Toast.LENGTH_SHORT).show();
 
-                userCheckCallback.onResult(true, new UserActionRequest(email, oldPassword, newPassword));
-            }
+            userCheckCallback.onResult(true, new UserActionRequest(email, oldPassword, newPassword));
         });
 
         // Set the negative button and its action
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
+        builder.setNegativeButton("Cancel", (dialog, which) -> {
+            dialog.cancel();
 
-                userCheckCallback.onResult(false, null);
+            userCheckCallback.onResult(false, null);
 
-            }
         });
 
         // Show the dialog

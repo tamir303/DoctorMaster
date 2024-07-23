@@ -31,12 +31,9 @@ public class AppointmentCompleteActivity extends AppCompatActivity {
         String time = intent.getStringExtra("time");
         String date = Date.convertLongToDateString(intent.getLongExtra("date", -1));
 
-        appointmentService.processAppointmentRequest(userUid, doctorName, location, time, date, new AppointmentCheckCallback() {
-            @Override
-            public void onResult(boolean actionResult, Appointment appointment) {
-                if (actionResult)
-                    setAppointmentCompleteView(appointment);
-            }
+        appointmentService.processAppointmentRequest(userUid, doctorName, location, time, date, (actionResult, appointment) -> {
+            if (actionResult)
+                setAppointmentCompleteView(appointment);
         });
 
         getSupportFragmentManager()

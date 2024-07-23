@@ -63,15 +63,12 @@ public class MedicalFieldDetailsActivity extends BaseActivity {
             icon.setImageResource(iconResId);
             name.setText(field.getName());
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Start MedicalFieldActivity and pass data
-                    Intent intent = new Intent(MedicalFieldDetailsActivity.this, MedicalFieldActivity.class);
-                    intent.putExtra("name", field.getName());
-                    intent.putExtra("iconResId", iconResId);
-                    startActivity(intent);
-                }
+            itemView.setOnClickListener(v -> {
+                // Start MedicalFieldActivity and pass data
+                Intent intent = new Intent(MedicalFieldDetailsActivity.this, MedicalFieldActivity.class);
+                intent.putExtra("name", field.getName());
+                intent.putExtra("iconResId", iconResId);
+                startActivity(intent);
             });
 
             fieldsGrid.addView(itemView);

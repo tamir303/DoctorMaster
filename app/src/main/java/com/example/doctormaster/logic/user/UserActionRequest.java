@@ -1,5 +1,7 @@
 package com.example.doctormaster.logic.user;
 
+import androidx.annotation.NonNull;
+
 public class UserActionRequest {
     String email;
     String oldPassword;
@@ -43,6 +45,7 @@ public class UserActionRequest {
         this.newPassword = newPassword;
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "UserActionRequest{" +

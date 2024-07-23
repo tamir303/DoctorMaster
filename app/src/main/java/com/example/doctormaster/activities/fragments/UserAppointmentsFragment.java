@@ -31,13 +31,10 @@ public class UserAppointmentsFragment extends Fragment {
         rvAppointments = view.findViewById(R.id.rvAppointments);
 
         // Set up RecyclerView
-        AppointmentDB.loadAppointmentsByUser(new FirestoreCallback<List<Appointment>>() {
-            @Override
-            public void onCallBack(List<Appointment> appointmentsList) {
-                appointmentsAdapter = new AppointmentsAdapter(appointmentsList);
-                rvAppointments.setLayoutManager(new LinearLayoutManager(getContext()));
-                rvAppointments.setAdapter(appointmentsAdapter);
-            }
+        AppointmentDB.loadAppointmentsByUser(appointmentsList -> {
+            appointmentsAdapter = new AppointmentsAdapter(appointmentsList);
+            rvAppointments.setLayoutManager(new LinearLayoutManager(getContext()));
+            rvAppointments.setAdapter(appointmentsAdapter);
         });
 
         return view;

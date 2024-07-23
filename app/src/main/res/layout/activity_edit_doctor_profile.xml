@@ -22,6 +22,7 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="text" />
 
         <!-- Location Label and EditText -->
@@ -36,6 +37,7 @@
             android:id="@+id/etLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="text" />
 
         <!-- Field Label and Spinner -->
@@ -65,6 +67,7 @@
             android:id="@+id/etDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="textMultiLine"
             android:minLines="3"
             android:gravity="top"
@@ -92,6 +95,7 @@
             android:id="@+id/etExperience"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="number" />
 
         <!-- Rating Label and EditText -->
@@ -106,6 +110,7 @@
             android:id="@+id/etRating"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="numberDecimal" />
 
         <!-- Start Hour Label and EditText -->
@@ -120,6 +125,7 @@
             android:id="@+id/etStartHour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="number" />
 
         <!-- Finish Hour Label and EditText -->
@@ -134,6 +140,7 @@
             android:id="@+id/etFinishHour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="number" />
 
         <!-- Break Hour Label and EditText -->
@@ -148,6 +155,7 @@
             android:id="@+id/etBreakHour"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="number" />
 
         <!-- Break Length Label and EditText -->
@@ -162,6 +170,7 @@
             android:id="@+id/etBreakLength"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:inputType="number" />
 
         <!-- Save Button -->

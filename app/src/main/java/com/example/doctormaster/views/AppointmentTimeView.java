@@ -6,18 +6,15 @@ import static com.example.doctormaster.utils.Constants.BUTTON_SIZE_DP;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.widget.Button;
 import android.widget.GridLayout;
-import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
 import com.example.doctormaster.activities.AppointmentCompleteActivity;
 import com.example.doctormaster.models.Doctor;
 import com.example.doctormaster.utils.AppointmentTimesUtils;
-import com.example.doctormaster.utils.Constants;
 
 import java.util.List;
 

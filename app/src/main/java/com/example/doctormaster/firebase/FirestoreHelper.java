@@ -7,7 +7,6 @@ import com.example.doctormaster.R;
 import com.example.doctormaster.models.Doctor;
 import com.example.doctormaster.utils.Constants;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -30,12 +29,8 @@ public class FirestoreHelper {
             // Upload each doctor object to Realtime Database
             for (Doctor doctor : doctors) {
                 db.child(Constants.DOCTOR_DB).child(doctor.getUid()).setValue(doctor)
-                        .addOnSuccessListener(aVoid -> {
-                            Log.d("FirebaseDatabase", "Doctor successfully added with ID: " + doctor.getUid());
-                        })
-                        .addOnFailureListener(e -> {
-                            Log.e("FirebaseDatabase", "Error adding doctor", e);
-                        });
+                        .addOnSuccessListener(aVoid -> Log.d("FirebaseDatabase", "Doctor successfully added with ID: " + doctor.getUid()))
+                        .addOnFailureListener(e -> Log.e("FirebaseDatabase", "Error adding doctor", e));
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -15,61 +15,44 @@ public class AppointmentServiceImpl implements AppointmentService {
     @Override
     public void processAppointmentRequest(String userUid, String doctorName, String location, String time, String date, AppointmentCheckCallback appointmentCheckCallback) {
         Appointment appointment = new Appointment(userUid, doctorName, date, time, location);
-        AppointmentDB.loadAppointmentByUid(appointment.getUUID(), new FirestoreCallback<Appointment>() {
-            @Override
-            public void onCallBack(Appointment result) {
-                if (result != null) {
-                    Log.d("AppointmentServiceImpl", "Appointment Already Exist!");
+        AppointmentDB.loadAppointmentByUid(appointment.getUUID(), result -> {
+            if (result != null) {
+                Log.d("AppointmentServiceImpl", "Appointment Already Exist!");
 
-                    updateAppointment(appointment, new AppointmentCheckCallback() {
-                        @Override
-                        public void onResult(boolean actionResult, Appointment appointment) {
-                            appointmentCheckCallback.onResult(actionResult, appointment);
-                        }
-                    });
-                } else {
-                    Log.d("AppointmentServiceImpl", "Creating new Appointment!");
+                updateAppointment(appointment, (actionResult, appointment12) -> appointmentCheckCallback.onResult(actionResult, appointment12));
+            } else {
+                Log.d("AppointmentServiceImpl", "Creating new Appointment!");
 
-                    // Insert new appointment to DB
-                    createNewAppointment(appointment, new AppointmentCheckCallback() {
-                        @Override
-                        public void onResult(boolean actionResults, Appointment appointment) {
-                            // Return status of async action
-                            appointmentCheckCallback.onResult(actionResults, appointment);
-                        }
-                    });
-                }
+                // Insert new appointment to DB
+                createNewAppointment(appointment, (actionResults, appointment1) -> {
+                    // Return status of async action
+                    appointmentCheckCallback.onResult(actionResults, appointment1);
+                });
             }
         });
     }
 
     private void createNewAppointment(Appointment appointment, AppointmentCheckCallback appointmentCheckCallback) {
-        AppointmentDB.addAppointmentToDB(appointment, new FirestoreCallback<Boolean>() {
-            @Override
-            public void onCallBack(Boolean result) {
-                if (result)
-                    Log.d("AppointmentServiceImpl", "Appointment Creation Success!");
-                else
-                    Log.e("AppointmentServiceImpl", "Appointment Creation Failure!");
+        AppointmentDB.addAppointmentToDB(appointment, result -> {
+            if (result)
+                Log.d("AppointmentServiceImpl", "Appointment Creation Success!");
+            else
+                Log.e("AppointmentServiceImpl", "Appointment Creation Failure!");
 
-                appointmentCheckCallback.onResult(result, appointment);
-            }
+            appointmentCheckCallback.onResult(result, appointment);
         });
     }
 
     private void updateAppointment(Appointment appointment, AppointmentCheckCallback appointmentCheckCallback) {
         Map<String, Object> updates = new HashMap<>();
         updates.put("time", appointment.getTime());
-        AppointmentDB.updateAppointment(appointment.getUUID(), updates, new FirestoreCallback<Boolean>() {
-            @Override
-            public void onCallBack(Boolean result) {
-                if (result)
-                    Log.d("AppointmentServiceImpl", "Appointment Update Success!");
-                else
-                    Log.e("AppointmentServiceImpl", "Appointment Update Failure!");
+        AppointmentDB.updateAppointment(appointment.getUUID(), updates, result -> {
+            if (result)
+                Log.d("AppointmentServiceImpl", "Appointment Update Success!");
+            else
+                Log.e("AppointmentServiceImpl", "Appointment Update Failure!");
 
-                appointmentCheckCallback.onResult(result, appointment);
-            }
+            appointmentCheckCallback.onResult(result, appointment);
         });
     }
 }

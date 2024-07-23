@@ -23,14 +23,12 @@ import java.util.List;
 
 public class EditDoctorProfileActivity extends AppCompatActivity {
 
-    private Spinner spinnerField;
     private RecyclerView recyclerViewSpecialties;
     private SpecialityAdapter specialityAdapter;
 
     private EditText etName, etLocation, etField, etDescription, etSpecialties,
             etExperience, etRating, etStartHour, etFinishHour,
             etBreakHour, etBreakLength;
-    private Button btnSave;
 
     private final List<String> cardiologySpecialties = Arrays.asList("Cardiologist", "Interventional Cardiologist", "Angioplasty", "Heart Bypass Surgery");
     private final List<String> pregnancySpecialties = Arrays.asList("Obstetrician", "Gynecologist", "Prenatal Care", "Cesarean Section");
@@ -47,7 +45,7 @@ public class EditDoctorProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_doctor_profile);
 
-        spinnerField = findViewById(R.id.spinnerField);
+        Spinner spinnerField = findViewById(R.id.spinnerField);
         recyclerViewSpecialties = findViewById(R.id.recyclerViewSpecialties);
 
         Intent intent = getIntent();
@@ -62,22 +60,19 @@ public class EditDoctorProfileActivity extends AppCompatActivity {
         etFinishHour = findViewById(R.id.etFinishHour);
         etBreakHour = findViewById(R.id.etBreakHour);
         etBreakLength = findViewById(R.id.etBreakLength);
-        btnSave = findViewById(R.id.btnSave);
+        Button btnSave = findViewById(R.id.btnSave);
 
-        DoctorDB.findDoctorByUid(EditDoctorProfileActivity.this, uid, new FirestoreCallback<Doctor>() {
-            @Override
-            public void onCallBack(Doctor result) {
-                if (result != null) {
-                    etName.setText(result.getName());
-                    etLocation.setText(result.getLocation());
-                    etDescription.setText(result.getDescription());
-                    etExperience.setText(result.getExperience().toString());
-                    etRating.setText(result.getRating().toString());
-                    etStartHour.setText(result.getStartHour().toString());
-                    etFinishHour.setText(result.getFinishHour().toString());
-                    etBreakHour.setText(result.getBreakHour().toString());
-                    etBreakLength.setText(result.getBreakLength().toString());
-                }
+        DoctorDB.findDoctorByUid(EditDoctorProfileActivity.this, uid, result -> {
+            if (result != null) {
+                etName.setText(result.getName());
+                etLocation.setText(result.getLocation());
+                etDescription.setText(result.getDescription());
+                etExperience.setText(result.getExperience().toString());
+                etRating.setText(result.getRating().toString());
+                etStartHour.setText(result.getStartHour().toString());
+                etFinishHour.setText(result.getFinishHour().toString());
+                etBreakHour.setText(result.getBreakHour().toString());
+                etBreakLength.setText(result.getBreakLength().toString());
             }
         });
 

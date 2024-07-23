@@ -6,7 +6,7 @@ import android.content.SharedPreferences;
 public class SecurePreferences {
 
     private static final String PREFS_NAME = "secure_prefs";
-    private SharedPreferences sharedPreferences;
+    private final SharedPreferences sharedPreferences;
 
     public SecurePreferences(Context context) {
         sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);

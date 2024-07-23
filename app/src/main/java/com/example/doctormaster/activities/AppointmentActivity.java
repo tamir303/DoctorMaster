@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.doctormaster.R;
 import com.example.doctormaster.activities.fragments.MenuFragment;
-import com.example.doctormaster.firebase.FirestoreCallback;
 import com.example.doctormaster.firebase.database.DoctorDB;
 import com.example.doctormaster.models.Doctor;
 import com.example.doctormaster.utils.Date;
@@ -35,17 +34,14 @@ public class AppointmentActivity extends AppCompatActivity {
         Log.d("AppointmentActivity", "Received doctor UID: " + doctor_uid);
 
         DoctorDB.findDoctorByUid(AppointmentActivity.this, doctor_uid,
-                new FirestoreCallback<Doctor>() {
-                    @Override
-                    public void onCallBack(Doctor doctor) {
-                        if (doctor != null) {
-                            Log.i("FirebaseDatabase", "Doctor" + doctor_uid + " was found!");
-                            setCurrentDoctorView(doctor);
-                            setDoctorAvailabilityView(doctor);
-                        } else {
-                            Utils.showToast(AppointmentActivity.this, "No doctor found!");
-                            Log.e("FirebaseDatabase", "ERROR, DoctorUid" + doctor_uid + " return no results!");
-                        }
+                doctor -> {
+                    if (doctor != null) {
+                        Log.i("FirebaseDatabase", "Doctor" + doctor_uid + " was found!");
+                        setCurrentDoctorView(doctor);
+                        setDoctorAvailabilityView(doctor);
+                    } else {
+                        Utils.showToast(AppointmentActivity.this, "No doctor found!");
+                        Log.e("FirebaseDatabase", "ERROR, DoctorUid" + doctor_uid + " return no results!");
                     }
                 }
         );

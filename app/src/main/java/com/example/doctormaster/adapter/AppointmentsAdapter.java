@@ -18,7 +18,7 @@ import com.example.doctormaster.models.Appointment;
 import java.util.List;
 
 public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapter.AppointmentViewHolder> {
-    private List<Appointment> appointmentsList;
+    private final List<Appointment> appointmentsList;
 
     public AppointmentsAdapter(List<Appointment> appointmentsList) {
         this.appointmentsList = appointmentsList;
@@ -39,18 +39,13 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
         holder.tvAppointmentTime.setText("Time: " + appointment.getTime());
         holder.tvAppointmentLocation.setText("Location: " + appointment.getLocation());
 
-        holder.btnAppointmentRemove.setOnClickListener(v -> {
-            AppointmentDB.deleteAppointmentByUid(appointment.getUUID(), new FirestoreCallback<Boolean>() {
-                @Override
-                public void onCallBack(Boolean result) {
-                    if (result) {
-                        holder.btnAppointmentRemove.setBackgroundColor(Color.GREEN);
-                        holder.btnAppointmentRemove.setText("Removed");
-                        holder.btnAppointmentRemove.setClickable(false);
-                    }
-                }
-            });
-        });
+        holder.btnAppointmentRemove.setOnClickListener(v -> AppointmentDB.deleteAppointmentByUid(appointment.getUUID(), result -> {
+            if (result) {
+                holder.btnAppointmentRemove.setBackgroundColor(Color.GREEN);
+                holder.btnAppointmentRemove.setText("Removed");
+                holder.btnAppointmentRemove.setClickable(false);
+            }
+        }));
     }
 
     @Override
@@ -60,8 +55,11 @@ public class AppointmentsAdapter extends RecyclerView.Adapter<AppointmentsAdapte
 
     public static class AppointmentViewHolder extends RecyclerView.ViewHolder {
 
-        TextView tvDoctorName, tvAppointmentDate, tvAppointmentTime, tvAppointmentLocation;
-        Button btnAppointmentRemove;
+        final TextView tvDoctorName;
+        final TextView tvAppointmentDate;
+        final TextView tvAppointmentTime;
+        final TextView tvAppointmentLocation;
+        final Button btnAppointmentRemove;
 
         public AppointmentViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -64,21 +64,18 @@ public abstract class DoctorDB {
                                                       String field,
                                                       String speciality)
     {
-        DoctorDB.loadDoctors(currentActivity, new FirestoreCallback<List<Doctor>>() {
-            @Override
-            public void onCallBack(List<Doctor> doctorList) {
-                if (doctorList.isEmpty()) {
-                  Log.e("FirebaseDatabase", "No doctors found!");
-                  firestoreCallback.onCallBack(Collections.emptyList());
-                } else {
-                    List<Doctor> filteredList = new ArrayList<>();
-                    for (Doctor doctor : doctorList) {
-                        if (doctor.getField().equals(field) && doctor.getSpecialties().contains(speciality))
-                            filteredList.add(doctor);
-                    }
-
-                    firestoreCallback.onCallBack(filteredList);
+        DoctorDB.loadDoctors(currentActivity, doctorList -> {
+            if (doctorList.isEmpty()) {
+              Log.e("FirebaseDatabase", "No doctors found!");
+              firestoreCallback.onCallBack(Collections.emptyList());
+            } else {
+                List<Doctor> filteredList = new ArrayList<>();
+                for (Doctor doctor : doctorList) {
+                    if (doctor.getField().equals(field) && doctor.getSpecialties().contains(speciality))
+                        filteredList.add(doctor);
                 }
+
+                firestoreCallback.onCallBack(filteredList);
             }
         });
     }

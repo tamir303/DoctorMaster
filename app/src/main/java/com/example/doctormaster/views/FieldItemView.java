@@ -52,14 +52,11 @@ public class FieldItemView extends AppCompatTextView {
         params.setMargins(8, 8, 8, 8);  // Add margins between items
         this.setLayoutParams(params);
 
-        this.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent newIntent = new Intent(context, DoctorDetailActivity.class);
-                newIntent.putExtra("speciality", detail);
-                newIntent.putExtra("field", field);
-                context.startActivity(newIntent);
-            }
+        this.setOnClickListener(v -> {
+            Intent newIntent = new Intent(context, DoctorDetailActivity.class);
+            newIntent.putExtra("speciality", detail);
+            newIntent.putExtra("field", field);
+            context.startActivity(newIntent);
         });
     }
 }

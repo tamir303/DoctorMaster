@@ -11,26 +11,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp"
-        android:background="#1E5989">
+        android:background="#4695D6">
 
         <ImageView
             android:id="@+id/doctorImageView"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/ic_doctor"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
             android:contentDescription="@string/doctor_image"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/doctorDetailsLayout"
             android:scaleType="centerCrop"
-            android:layout_marginEnd="16dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/doctorDetailsLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@drawable/border_white"
+            android:paddingLeft="5dp"
             app:layout_constraintStart_toEndOf="@id/doctorImageView"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,23 +40,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Doctor John Smith"
-                android:textSize="18sp"
+                android:textSize="15sp"
                 android:textStyle="bold"
+                android:layout_marginStart="15dp"
                 android:textColor="@android:color/white"
                 android:layout_marginBottom="4dp" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_location"
-                    android:contentDescription="Location Icon"
-                    android:layout_marginEnd="4dp"
-                    app:tint="@android:color/holo_blue_dark" />
+                android:orientation="horizontal"
+                android:background="@drawable/border_white"
+                android:layout_marginBottom="1dp"
+                android:layout_weight="2">
 
                 <TextView
                     android:id="@+id/doctorLocationTextView"
@@ -65,27 +60,35 @@
                     android:layout_height="wrap_content"
                     android:text="Tel Aviv"
                     android:textStyle="bold"
-                    android:textColor="@android:color/white" />
-            </LinearLayout>
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"
+                    android:drawableLeft="@drawable/ic_location"
+                    android:drawablePadding="4dp" />
 
-            <TextView
-                android:id="@+id/doctorExperienceTextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Experience: 12 years."
-                android:textColor="@android:color/white"
-                android:layout_marginTop="4dp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
+                <TextView
+                    android:id="@+id/doctorExperienceTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Experience- 12 years."
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="8dp" />
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/bookAppointmentButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/design_default_color_secondary"
                 android:text="Book appointment"
-                android:backgroundTint="#83E687"
-                android:textStyle="bold"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
