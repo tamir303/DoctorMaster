@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.doctormaster.R;
+import com.example.doctormaster.activities.fragments.MenuFragment;
 import com.example.doctormaster.adapter.DoctorAdapter;
 import com.example.doctormaster.firebase.FirestoreCallback;
 import com.example.doctormaster.firebase.database.DoctorDB;
@@ -48,6 +49,11 @@ public class DoctorDetailActivity extends BaseActivity {
                 field,
                 speciality
         );
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.menu_container, new MenuFragment(DoctorDetailActivity.this, MedicalFieldActivity.class))
+                .commit();
     }
 
     @Override

@@ -15,13 +15,12 @@ import com.example.doctormaster.logic.appointment.AppointmentServiceImpl;
 import com.example.doctormaster.models.Appointment;
 import com.example.doctormaster.utils.Date;
 
-public class AppointmentCompleteActivity extends AppCompatActivity {
+public class AppointmentCompleteActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        setContentView(R.layout.activity_appointment_complete);
-
+        getLayoutInflater().inflate(R.layout.activity_appointment_complete, findViewById(R.id.container));
         Intent intent = getIntent();
         AppointmentService appointmentService = new AppointmentServiceImpl();
 
@@ -40,6 +39,16 @@ public class AppointmentCompleteActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.menu_container, new MenuFragment(AppointmentCompleteActivity.this, AppointmentActivity.class))
                 .commit();
+    }
+
+    @Override
+    public void InitializeViews() {
+
+    }
+
+    @Override
+    public void setButtonListeners() {
+
     }
 
     private void setAppointmentCompleteView(Appointment appointment) {

@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import com.example.doctormaster.firebase.FirebaseOperations;
 import com.example.doctormaster.firebase.FirestoreCallback;
 import com.example.doctormaster.models.Appointment;
+import com.example.doctormaster.models.Doctor;
 import com.example.doctormaster.utils.Constants;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -71,6 +72,28 @@ public abstract class AppointmentDB {
     public static void loadAppointmentsByUser(FirestoreCallback<List<Appointment>> firestoreCallback) {
         String currentUserUid = FirebaseOperations.getUserEmail();
         db.child(Constants.APPOINTMENT_DB).orderByChild("uid").equalTo(currentUserUid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                List<Appointment> appointments = new ArrayList<>();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Appointment appointment = snapshot.getValue(Appointment.class);
+                    if (appointment != null)
+                        appointments.add(appointment);
+                }
+
+                Log.d("FirebaseDatabase", "Appointments: " + appointments);
+                firestoreCallback.onCallBack(appointments);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("FirebaseDatabase", "Error fetching appointments: " + error.getMessage());
+            }
+        });
+    }
+
+    public static void loadAppointmentsByDoctor(String doctorName, FirestoreCallback<List<Appointment>> firestoreCallback) {
+        db.child(Constants.APPOINTMENT_DB).orderByChild("doctor").equalTo(doctorName).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 List<Appointment> appointments = new ArrayList<>();

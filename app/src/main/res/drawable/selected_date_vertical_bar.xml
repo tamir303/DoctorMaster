@@ -1,0 +1,5 @@
+<!-- res/drawable/selected_date_vertical_bar.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#2196F3" /> <!-- Blue color for the selected date -->
+    <corners android:radius="50dp" /> <!-- Makes the selected date a circle -->
+</shape>
