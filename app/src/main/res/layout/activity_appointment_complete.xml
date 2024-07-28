@@ -8,10 +8,11 @@
     <!-- Checkmark icon -->
     <ImageView
         android:id="@+id/checkmarkIcon"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:src="@drawable/checkmark_ic"/>
 
     <!-- Appointment details -->
     <TextView
