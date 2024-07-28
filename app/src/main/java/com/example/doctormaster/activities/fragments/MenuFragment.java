@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -37,9 +38,9 @@ public class MenuFragment extends Fragment  {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Button btnGoBack = view.findViewById(R.id.btnGoBack);
-        Button btnGoToProfile = view.findViewById(R.id.btnGoToProfile);
-        Button btnSwitchUsers = view.findViewById(R.id.btnSwitchUsers);
+        ImageButton btnGoBack = view.findViewById(R.id.btnGoBack);
+        ImageButton btnGoToProfile = view.findViewById(R.id.btnGoToProfile);
+        ImageButton btnSwitchUsers = view.findViewById(R.id.btnSwitchUsers);
 
         btnGoBack.setOnClickListener(v -> {
             // Navigate back
