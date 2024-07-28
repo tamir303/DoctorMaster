@@ -15,6 +15,8 @@ import com.example.doctormaster.R;
 import com.example.doctormaster.activities.fragments.MenuFragment;
 import com.example.doctormaster.activities.fragments.UserAppointmentsFragment;
 import com.example.doctormaster.firebase.FirebaseOperations;
+import com.example.doctormaster.firebase.FirestoreCallback;
+import com.example.doctormaster.firebase.database.ProfileImageDB;
 
 public class UserAppointmentsActivity extends AppCompatActivity {
 
@@ -46,8 +48,13 @@ public class UserAppointmentsActivity extends AppCompatActivity {
         tvGreeting.setText("Hello, " + userEmail);
 
         imgPlaceholder.setOnClickListener(v -> openImageChooser());
-
-        // TODO IMPLEMENT IMAGE UPLOAD
+        ProfileImageDB.loadProfileImage(new FirestoreCallback<String>() {
+            @Override
+            public void onCallBack(String result) {
+                if (result != null)
+                    imgPlaceholder.setImageURI(Uri.parse(result));
+            }
+        });
     }
 
     private void openImageChooser() {
@@ -61,6 +68,7 @@ public class UserAppointmentsActivity extends AppCompatActivity {
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri imageUri = data.getData();
             this.imgPlaceholder.setImageURI(imageUri);
+            ProfileImageDB.uploadImageToFirebase(imageUri);
         }
     }
 }

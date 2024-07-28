@@ -8,6 +8,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class FirebaseOperations {
     private FirebaseOperations() {
@@ -20,6 +22,16 @@ public class FirebaseOperations {
     public static FirebaseAuth getAuth() {
         return FirebaseAuth.getInstance();
     }
+
+    public static StorageReference getStorageRef() {
+        FirebaseUser user = getAuth().getCurrentUser();
+        if (user != null) {
+            return FirebaseStorage.getInstance().getReference("profileImages/" + user.getUid() + ".jpg");
+        }
+
+        return null;
+    }
+
 
     public static String getUserEmail() {
         FirebaseUser user = getAuth().getCurrentUser();
