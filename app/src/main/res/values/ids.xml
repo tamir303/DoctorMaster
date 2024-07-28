@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="welcomeTextView" type="id" />
+    <item name="doctorRecyclerView" type="id" />
+    <item name="fabNewAppointment" type="id" />
+    <item name="logoutButton" type="id" />
+    <item name="menu_container" type="id" />
+    <item name="etName" type="id" />
+    <item name="etLocation" type="id" />
+    <item name="etField" type="id" />
+    <item name="etDescription" type="id" />
+    <item name="etSpecialties" type="id" />
+    <item name="etExperience" type="id" />
+    <item name="etRating" type="id" />
+    <item name="etStartHour" type="id" />
+    <item name="etFinishHour" type="id" />
+    <item name="etBreakHour" type="id" />
+    <item name="etBreakLength" type="id" />
+    <item name="btnSave" type="id" />
+</resources>

@@ -1,0 +1,30 @@
+<resources>
+    <!-- Custom CalendarView Theme -->
+    <style name="CalendarViewTheme" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:colorBackground">#2B2B2B</item> <!-- Light black background -->
+        <item name="android:dateTextAppearance">@style/CalendarDateTextAppearance</item>
+        <item name="android:weekDayTextAppearance">@style/CalendarWeekDayTextAppearance</item>
+        <item name="android:selectedDateVerticalBar">@drawable/selected_date_vertical_bar</item>
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+    <!-- Date Text Appearance -->
+    <style name="CalendarDateTextAppearance" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textColor">#FFFFFF</item> <!-- White text color -->
+    </style>
+
+    <!-- Weekday Text Appearance -->
+    <style name="CalendarWeekDayTextAppearance" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">#2196F3</item> <!-- Blue text color -->
+    </style>
+
+    <!-- Custom Text Appearance for Year and Month -->
+    <style name="CalendarYearMonthTextAppearance" parent="TextAppearance.AppCompat.Large">
+        <item name="android:textColor">#FFFFFF</item> <!-- White text color for Year and Month -->
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#F7D366</item>
+        <item name="colorControlActivated">#FFC107</item>
+    </style>
+</resources>

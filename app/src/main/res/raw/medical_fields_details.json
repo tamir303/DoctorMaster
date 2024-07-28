@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Cardiology",
+    "details": ["Cardiologist", "Interventional Cardiologist", "Angioplasty", "Heart Bypass Surgery"]
+  },
+  {
+    "name": "Pregnancy",
+    "details": ["Obstetrician", "Gynecologist", "Prenatal Care", "Cesarean Section"]
+  },
+  {
+    "name": "Gastroenterologist",
+    "details": ["Gastroenterologist", "Hepatologist", "Endoscopy", "Liver Biopsy"]
+  },
+  {
+    "name": "Mental Health",
+    "details": ["Psychiatrist", "Psychologist", "Cognitive Behavioral Therapy", "Medication Management"]
+  },
+  {
+    "name": "Orthopedics",
+    "details": ["Orthopedic Surgeon", "Rheumatologist", "Joint Replacement", "Arthroscopy"]
+  },
+  {
+    "name": "Neurosurgery",
+    "details": ["Neurosurgeon", "Spine Surgeon", "Brain Tumor Surgery", "Spinal Fusion"]
+  },
+  {
+    "name": "Emergency",
+    "details": ["Emergency Physician", "Trauma Surgeon", "CPR", "Fracture Repair"]
+  },
+  {
+    "name": "Dentistry",
+    "details": ["Dentist", "Orthodontist", "Teeth Cleaning", "Root Canal Treatment"]
+  },
+  {
+    "name": "Otolaryngology",
+    "details": ["ENT Specialist", "Otolaryngologist", "Tonsillectomy", "Sinus Surgery"]
+  }
+]
