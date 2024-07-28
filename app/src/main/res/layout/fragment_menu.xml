@@ -9,11 +9,10 @@
     <!-- Buttons at the bottom -->
     <LinearLayout
         android:id="@+id/button_layout"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#7D7A7A"
         android:orientation="horizontal"
-        android:padding="16dp"
         android:weightSum="3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
