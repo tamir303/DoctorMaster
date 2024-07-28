@@ -2,6 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/default_background"
     android:id="@+id/fragment_container">
 
     <TextView
@@ -10,6 +11,7 @@
         android:layout_height="wrap_content"
         android:text="Hello, user!"
         android:textSize="18sp"
+        android:padding="1dp"
         android:textStyle="bold"
         android:layout_gravity="center_horizontal"/>
 
@@ -19,8 +21,10 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
+        android:src="@drawable/user_login_placeholder"
         android:clickable="true"
         android:contentDescription="TODO"
+        android:layout_marginVertical="35dp"
         android:focusable="true" />
 
 </FrameLayout>

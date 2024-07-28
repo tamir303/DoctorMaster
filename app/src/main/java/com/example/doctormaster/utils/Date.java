@@ -3,6 +3,7 @@ package com.example.doctormaster.utils;
 import android.annotation.SuppressLint;
 import android.widget.CalendarView;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
@@ -20,6 +21,18 @@ public abstract class Date {
         java.util.Date date = new java.util.Date(dateInMillis);
 
         return sdf.format(date);
+    }
+
+    public static Long convertStringToDateLong(String dateString) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        try {
+            java.util.Date date = sdf.parse(dateString);
+            assert date != null;
+            return date.getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return 0L; // Handle the error case as needed
+        }
     }
 
     @SuppressLint("DefaultLocale")
