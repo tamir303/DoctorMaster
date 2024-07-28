@@ -34,6 +34,10 @@ public class MedicalFieldActivity extends BaseActivity {
         fieldName = intent.getStringExtra("name");
         int iconResId = intent.getIntExtra("iconResId", -1);
 
+        if (iconResId == -1) {
+            iconResId = getResources().getIdentifier("ic_" + fieldName.toLowerCase() + "_icon", "drawable", getPackageName());
+        }
+
         InitializeViews();
 
         if (iconResId != -1)
@@ -44,7 +48,7 @@ public class MedicalFieldActivity extends BaseActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.menu_container, new MenuFragment(MedicalFieldActivity.this, MedicalFieldDetailsActivity.class))
+                .replace(R.id.menu_container, MenuFragment.newInstance(MedicalFieldActivity.class, MedicalFieldDetailsActivity.class, java.util.Optional.empty()))
                 .commit();
     }
 
@@ -63,10 +67,11 @@ public class MedicalFieldActivity extends BaseActivity {
     private void setDetailsView() {
         MedicalFieldDetails fieldDetails = loadMedicalFieldDetailsFromJson(R.raw.medical_fields_details, fieldName);
 
-        assert fieldDetails != null;
-        for (String detail : fieldDetails.getDetails()) {
-            FieldItemView itemView = new FieldItemView(this, detail, fieldName);
-            fieldsGrid.addView(itemView);
+        if (fieldDetails != null) {
+            for (String detail : fieldDetails.getDetails()) {
+                FieldItemView itemView = new FieldItemView(this, detail, fieldName);
+                fieldsGrid.addView(itemView);
+            }
         }
     }
 

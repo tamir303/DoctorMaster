@@ -1,5 +1,6 @@
 package com.example.doctormaster.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,11 +19,15 @@ import com.example.doctormaster.firebase.FirebaseOperations;
 import com.example.doctormaster.firebase.FirestoreCallback;
 import com.example.doctormaster.firebase.database.ProfileImageDB;
 
+import java.util.HashMap;
+import java.util.Optional;
+
 public class UserAppointmentsActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageView imgPlaceholder;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +42,18 @@ public class UserAppointmentsActivity extends AppCompatActivity {
                     .replace(R.id.fragment_container, new UserAppointmentsFragment())
                     .commit();
 
+            HashMap<String, Object> extraArgs = new HashMap<>();
+            extraArgs.put("USER_TYPE", "patient");
+
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.menu_container, new MenuFragment(UserAppointmentsActivity.this, MedicalFieldDetailsActivity.class))
+                    .replace(R.id.menu_container, MenuFragment.newInstance(UserAppointmentsActivity.class, MedicalFieldDetailsActivity.class, Optional.of(extraArgs)))
                     .commit();
         }
 
         // Set user email in greeting
         String userEmail = FirebaseOperations.getUserEmail();
-        tvGreeting.setText("Hello, " + userEmail);
+        tvGreeting.setText("Hello, " + userEmail.split("@")[0]);
 
         imgPlaceholder.setOnClickListener(v -> openImageChooser());
         ProfileImageDB.loadProfileImage(new FirestoreCallback<String>() {

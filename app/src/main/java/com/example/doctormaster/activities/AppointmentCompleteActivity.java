@@ -28,6 +28,7 @@ public class AppointmentCompleteActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
         getLayoutInflater().inflate(R.layout.activity_appointment_complete, findViewById(R.id.container));
+
         Intent intent = getIntent();
         AppointmentService appointmentService = new AppointmentServiceImpl();
 
@@ -48,7 +49,7 @@ public class AppointmentCompleteActivity extends BaseActivity {
 
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.menu_container, new MenuFragment(AppointmentCompleteActivity.this, AppointmentActivity.class))
+                .replace(R.id.menu_container, MenuFragment.newInstance(AppointmentCompleteActivity.class, AppointmentActivity.class, java.util.Optional.empty()))
                 .commit();
     }
 

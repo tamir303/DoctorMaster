@@ -18,7 +18,9 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.Gson;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Optional;
 
 public class MedicalFieldDetailsActivity extends BaseActivity {
     GridLayout fieldsGrid;
@@ -31,9 +33,12 @@ public class MedicalFieldDetailsActivity extends BaseActivity {
         InitializeViews();
         setDetailsView();
 
+        HashMap<String, Object> extraArgs = new HashMap<>();
+        extraArgs.put("USER_TYPE", "patient");
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.menu_container, new MenuFragment(MedicalFieldDetailsActivity.this, LoginActivity.class))
+                .replace(R.id.menu_container, MenuFragment.newInstance(MedicalFieldDetailsActivity.class, LoginActivity.class, Optional.of(extraArgs)))
                 .commit();
     }
 

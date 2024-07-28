@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="@drawable/default_background"
-    android:padding="16dp">
+    android:background="@drawable/default_background">
 
     <TextView
         android:layout_width="wrap_content"
@@ -14,6 +14,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#308C9B"
+        android:padding="16dp"
         />
 
     <ScrollView
@@ -34,7 +35,8 @@
                 android:columnCount="3"
                 android:rowCount="3"
                 android:alignmentMode="alignBounds"
-                android:rowOrderPreserved="false">
+                android:rowOrderPreserved="false"
+                android:padding="2dp">
             </GridLayout>
 
         </LinearLayout>
@@ -44,9 +46,8 @@
         android:id="@+id/menu_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/button_layout"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/main_layout"
+        app:layout_constraintStart_toStartOf="@+id/main_layout"
+        app:layout_constraintEnd_toEndOf="@+id/main_layout" />
 
 </LinearLayout>

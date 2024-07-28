@@ -65,7 +65,7 @@ public class AppointmentTimeView extends GridLayout {
                     params.setMargins(8, 8, 8, 8);
 
                     timeButton.setLayoutParams(params);
-                    timeButton.setBackgroundColor(Color.GRAY);
+                    timeButton.setBackgroundColor(Color.rgb(180, 227, 128));
 
                     timeButton.setOnClickListener(view -> {
                         Intent intent = new Intent(getContext(), AppointmentCompleteActivity.class);

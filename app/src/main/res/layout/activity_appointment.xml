@@ -1,102 +1,105 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/default_background"
     tools:context=".activities.MainActivity">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/menu_container"
         android:padding="16dp">
 
-        <!-- Doctor Information -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="16dp">
+            android:orientation="vertical">
 
-            <ImageView
-                android:id="@+id/doctor_image"
-                android:layout_width="110dp"
-                android:layout_height="160dp"
-                android:layout_marginEnd="16dp"
-                android:contentDescription="@string/doctor_s_image" />
-
+            <!-- Doctor Information -->
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="horizontal"
+                android:paddingBottom="16dp">
 
-                <TextView
-                    android:id="@+id/doctor_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Doctor John Smith"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/doctor_image"
+                    android:layout_width="110dp"
+                    android:layout_height="160dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="@string/doctor_s_image" />
 
-                <TextView
-                    android:id="@+id/doctor_description"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="John Smith received his qualification at the Hebrew University in Jerusalem and currently has 12 years of experience. John's clinic is located in the city of Tel Aviv."
-                    android:textSize="14sp" />
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                <RatingBar
-                    android:id="@+id/doctor_rating"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:rating="4.5"
-                    android:stepSize="0.5"
-                    android:isIndicator="true"
-                    android:layout_marginTop="8dp"
-                    android:theme="@style/RatingBar"/>
+                    <TextView
+                        android:id="@+id/doctor_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Doctor John Smith"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/doctor_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="John Smith received his qualification at the Hebrew University in Jerusalem and currently has 12 years of experience. John's clinic is located in the city of Tel Aviv."
+                        android:textSize="14sp" />
+
+                    <RatingBar
+                        android:id="@+id/doctor_rating"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:rating="4.5"
+                        android:stepSize="0.5"
+                        android:isIndicator="true"
+                        android:layout_marginTop="8dp"
+                        android:theme="@style/RatingBar"/>
+                </LinearLayout>
             </LinearLayout>
+
+            <!-- Available Appointments Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/available_appointments"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:paddingBottom="8dp" />
+
+            <!-- Calendar View -->
+            <CalendarView
+                android:id="@+id/calendar_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="#AA000000"
+                android:theme="@style/CalendarViewTheme"
+                android:dateTextAppearance="@style/CalendarDateTextAppearance"
+                android:weekDayTextAppearance="@style/CalendarWeekDayTextAppearance" />
+
+            <!-- Appointment Times Container -->
+            <com.example.doctormaster.views.AppointmentTimeView
+                android:id="@+id/appointment_times_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"/>
         </LinearLayout>
+    </ScrollView>
 
-        <!-- Available Appointments Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/available_appointments"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
+    <FrameLayout
+        android:id="@+id/menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_blue_dark"/>
 
-        <!-- Calendar View -->
-        <CalendarView
-            android:id="@+id/calendar_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:background="#AA000000"
-            android:theme="@style/CalendarViewTheme"
-            android:dateTextAppearance="@style/CalendarDateTextAppearance"
-            android:weekDayTextAppearance="@style/CalendarWeekDayTextAppearance" />
-
-        <!-- Appointment Times Container -->
-        <com.example.doctormaster.views.AppointmentTimeView
-            android:id="@+id/appointment_times_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"/>
-
-        <FrameLayout
-            android:id="@+id/menu_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/button_layout"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>

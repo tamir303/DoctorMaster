@@ -1,19 +1,25 @@
 package com.example.doctormaster.utils;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.widget.CalendarView;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
+import java.util.Objects;
 
 public abstract class Date {
 
     // Sets calender date to today and prevent choosing a day earlier
     public static void setCalenderDefaultConfiguration(CalendarView calendarView) {
-        long today = System.currentTimeMillis();
-        calendarView.setDate(today, false, true);
-        calendarView.setMinDate(today);
+        try {
+            long today = System.currentTimeMillis();
+            calendarView.setDate(today, false, true);
+            calendarView.setMinDate(today);
+        } catch (IllegalArgumentException ex) {
+            Log.e("DateUtil", Objects.requireNonNull(ex.getLocalizedMessage()));
+        }
     }
 
     public static String convertLongToDateString(Long dateInMillis) {

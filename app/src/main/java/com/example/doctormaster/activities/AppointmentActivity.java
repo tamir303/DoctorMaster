@@ -20,6 +20,8 @@ import com.example.doctormaster.utils.Utils;
 import com.example.doctormaster.views.AppointmentTimeView;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Optional;
 
 
 public class AppointmentActivity extends BaseActivity {
@@ -36,6 +38,9 @@ public class AppointmentActivity extends BaseActivity {
 
         Intent intent = getIntent();
         String doctor_uid = intent.getStringExtra("doctor_uid");
+        String field = intent.getStringExtra("field");
+        String speciality = intent.getStringExtra("speciality");
+
         Log.d("AppointmentActivity", "Received doctor UID: " + doctor_uid);
 
         DoctorDB.findDoctorByUid(AppointmentActivity.this, doctor_uid,
@@ -52,7 +57,7 @@ public class AppointmentActivity extends BaseActivity {
                                 selectedCalendar.set(year, month, dayOfMonth);
 
                                 setDoctorAvailabilityView(doctor, selectedCalendar.getTimeInMillis());
-                                Utils.showToast(AppointmentActivity.this, "Selected Date: " + selectedCalendar.getTime());
+                                Utils.showToast(AppointmentActivity.this, "Selected Date: " + selectedCalendar.getTime().getMonth() + "/" + selectedCalendar.getTime().getDay());
                             }
                         });
 
@@ -66,9 +71,13 @@ public class AppointmentActivity extends BaseActivity {
                 }
         );
 
+        HashMap<String, Object> extraArgs = new HashMap<>();
+        extraArgs.put("speciality", speciality);
+        extraArgs.put("field", field);
+
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.menu_container, new MenuFragment(AppointmentActivity.this, DoctorDetailActivity.class))
+                .replace(R.id.menu_container, MenuFragment.newInstance(AppointmentActivity.class, DoctorDetailActivity.class, Optional.of(extraArgs)))
                 .commit();
     }
 

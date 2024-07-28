@@ -23,10 +23,14 @@ import java.util.List;
 public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorViewHolder> {
     private final List<Doctor> doctorList;
     private final Context context;
+    private final String field;
+    private final String speciality;
 
-    public DoctorAdapter(List<Doctor> doctorList, Context context) {
+    public DoctorAdapter(List<Doctor> doctorList, Context context, String field, String speciality) {
         this.doctorList = doctorList;
         this.context = context;
+        this.field = field;
+        this.speciality = speciality;
     }
 
     @NonNull
@@ -56,6 +60,9 @@ public class DoctorAdapter extends RecyclerView.Adapter<DoctorAdapter.DoctorView
             holder.bookAppointmentButton.setOnClickListener(v -> {
                 Intent intent = new Intent(context, AppointmentActivity.class);
                 intent.putExtra("doctor_uid", doctor.getUid());
+                intent.putExtra("speciality", speciality);
+                intent.putExtra("field", field);
+
                 context.startActivity(intent);
             });
         } else {

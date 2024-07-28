@@ -1,7 +1,7 @@
 [
   {"name": "Cardiology", "icon": "ic_cardiology_icon"},
   {"name": "Pregnancy", "icon": "ic_pregnancy_icon"},
-  {"name": "Gastroenterologist", "icon": "ic_gastroenterologist_icon"},
+  {"name": "Gasterogist", "icon": "ic_gastroenterologist_icon"},
   {"name": "Mental Health", "icon": "ic_mental_health_icon"},
   {"name": "Orthopedics", "icon": "ic_orthopedics_icon"},
   {"name": "Neurosurgery", "icon": "ic_neurosurgery_icon"},
