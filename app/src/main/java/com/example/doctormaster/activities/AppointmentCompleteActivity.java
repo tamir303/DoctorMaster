@@ -1,7 +1,10 @@
 package com.example.doctormaster.activities;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
@@ -74,21 +77,21 @@ public class AppointmentCompleteActivity extends BaseActivity {
         Calendar beginTime = Calendar.getInstance();
         beginTime.setTimeInMillis(Date.convertStringToDateLong(appointment.getDate() + " " + appointment.getTime()));
         Calendar endTime = Calendar.getInstance();
-        endTime.setTimeInMillis(beginTime.getTimeInMillis() + 1800000L);
+        endTime.setTimeInMillis(beginTime.getTimeInMillis() + 1800000L); // Add 30 minutes
 
-        ContentValues values = new ContentValues();
-        values.put(CalendarContract.Events.DTSTART, beginTime.getTimeInMillis());
-        values.put(CalendarContract.Events.DTEND, endTime.getTimeInMillis());
-        values.put(CalendarContract.Events.TITLE, "Doctor appointment!");
-        values.put(CalendarContract.Events.DESCRIPTION, "Appointment for: " + appointment.getDoctor() + "\n" + appointment.getDate() + " | " + appointment.getTime() + " at " + appointment.getLocation());
-        values.put(CalendarContract.Events.CALENDAR_ID, 1);
-        values.put(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
+        // Create an Intent to add an event to the calendar
+        Intent intent = new Intent(Intent.ACTION_EDIT);
+        intent.setType("vnd.android.cursor.item/event");
 
-        Uri uri = getContentResolver().insert(CalendarContract.Events.CONTENT_URI, values);
+        // Set the event details
+        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.getTimeInMillis());
+        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, endTime.getTimeInMillis());
+        intent.putExtra(CalendarContract.Events.TITLE, "Doctor appointment!");
+        intent.putExtra(CalendarContract.Events.DESCRIPTION, "Appointment for: " + appointment.getDoctor() + "\n" + appointment.getDate() + " | " + appointment.getTime() + " at " + appointment.getLocation());
+        intent.putExtra(CalendarContract.Events.ALL_DAY, false); // Set to true if it's an all-day event
+        intent.putExtra(CalendarContract.Events.EVENT_TIMEZONE, TimeZone.getDefault().getID());
 
-        if (uri != null) {
-            long eventId = Long.parseLong(((Uri) uri).getLastPathSegment());
-            Toast.makeText(this, "Event added with ID: " + eventId, Toast.LENGTH_SHORT).show();
-        }
+        // Start the intent
+        startActivity(intent);
     }
 }
