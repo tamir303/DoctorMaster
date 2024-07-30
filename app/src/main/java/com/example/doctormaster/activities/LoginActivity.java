@@ -57,6 +57,9 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void setButtonListeners() {
+        if (userType == null)
+            userType = "patient";
+
         if (userType.equals("patient")) {
             loginButton.setOnClickListener(view -> {
                 String email = emailEditText.getText().toString().trim();
@@ -98,6 +101,9 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void processUserTypeViewStatus() {
+        if (userType == null)
+            userType = "patient";
+
         if (userType.equals("patient")) {
             emailEditText.setVisibility(View.VISIBLE);
             passwordEditText.setVisibility(View.VISIBLE);
