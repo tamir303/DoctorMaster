@@ -1,30 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/default_background"
-    android:id="@+id/fragment_container">
+    android:background="#72C1D3">
 
     <TextView
         android:id="@+id/tvGreeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello, user!"
-        android:textSize="18sp"
-        android:padding="1dp"
+        android:textSize="24sp"
+        android:textColor="@android:color/white"
+        android:padding="8dp"
         android:textStyle="bold"
-        android:layout_gravity="center_horizontal"/>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
     <ImageView
         android:id="@+id/imgPlaceholder"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/user_login_placeholder"
         android:clickable="true"
-        android:contentDescription="TODO"
-        android:layout_marginVertical="35dp"
-        android:focusable="true" />
+        android:contentDescription="User image"
+        android:focusable="true"
+        app:layout_constraintTop_toBottomOf="@id/tvGreeting"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/imgPlaceholder"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/menu_container"
+        app:layout_constraintVertical_bias="0.5"/>
+
+    <FrameLayout
+        android:id="@+id/menu_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/main_layout"
+        app:layout_constraintStart_toStartOf="@id/main_layout"
+        app:layout_constraintEnd_toEndOf="@id/main_layout"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

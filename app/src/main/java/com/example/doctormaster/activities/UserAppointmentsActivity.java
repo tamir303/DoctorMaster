@@ -5,13 +5,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.request.RequestOptions;
 import com.example.doctormaster.R;
 import com.example.doctormaster.activities.fragments.MenuFragment;
 import com.example.doctormaster.activities.fragments.UserAppointmentsFragment;
@@ -36,18 +38,18 @@ public class UserAppointmentsActivity extends AppCompatActivity {
         TextView tvGreeting = findViewById(R.id.tvGreeting);
         imgPlaceholder = findViewById(R.id.imgPlaceholder);
 
+        HashMap<String, Object> extraArgs = new HashMap<>();
+        extraArgs.put("USER_TYPE", "patient");
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.menu_container, MenuFragment.newInstance(UserAppointmentsActivity.class, MedicalFieldDetailsActivity.class, Optional.of(extraArgs)))
+                .commit();
+
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, new UserAppointmentsFragment())
-                    .commit();
-
-            HashMap<String, Object> extraArgs = new HashMap<>();
-            extraArgs.put("USER_TYPE", "patient");
-
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.menu_container, MenuFragment.newInstance(UserAppointmentsActivity.class, MedicalFieldDetailsActivity.class, Optional.of(extraArgs)))
                     .commit();
         }
 
@@ -59,8 +61,14 @@ public class UserAppointmentsActivity extends AppCompatActivity {
         ProfileImageDB.loadProfileImage(new FirestoreCallback<String>() {
             @Override
             public void onCallBack(String result) {
-                if (result != null)
-                    imgPlaceholder.setImageURI(Uri.parse(result));
+                if (result != null) {
+                    Glide.with(getApplicationContext())
+                                    .load(result + "&w=300&h=300")
+                                    .apply(new RequestOptions()
+                                        .placeholder(R.drawable.user_login_placeholder)
+                                        .centerCrop())
+                                    .into(imgPlaceholder);
+                }
             }
         });
     }

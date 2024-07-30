@@ -26,7 +26,7 @@ public class FirebaseOperations {
     public static StorageReference getStorageRef() {
         FirebaseUser user = getAuth().getCurrentUser();
         if (user != null) {
-            return FirebaseStorage.getInstance().getReference("profileImages/" + user.getUid() + ".jpg");
+            return FirebaseStorage.getInstance("gs://doctormaster-c7b1f.appspot.com").getReference("profileImages/" + user.getUid() + ".jpg");
         }
 
         return null;

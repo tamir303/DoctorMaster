@@ -3,8 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:background="?attr/selectableItemBackground">
+    android:padding="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Remove"
-            android:background="@android:color/holo_red_dark"
+            android:backgroundTint="@android:color/holo_blue_light"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical" />
 
